@@ -66,19 +66,19 @@
                 <h3>01.</h3>
                 <span class="maintitle">Online free courses and tutorials</span>
                 <br>
-                <span class="subtitle">Lorem ipsum dolor sit amet consectetur. Feugiat diam varius leo sit arcu pellentesque in.</span>
+                <span class="subtitle">Coming Soon</span>
             </div>
             <div class="tags">
                 <h3>02.</h3>
                 <span class="maintitle">Resources for teachers and educators</span>
                 <br>
-                <span class="subtitle">Lorem ipsum dolor sit amet consectetur. Feugiat diam varius leo sit arcu pellentesque in.</span>
+                <span class="subtitle">Coming Soon</span>
             </div>
             <div class="tags">
                 <h3>03.</h3>
                 <span class="maintitle">Space products for every space enthusiasts</span>
                 <br>
-                <span class="subtitle">Lorem ipsum dolor sit amet consectetur. Feugiat diam varius leo sit arcu pellentesque in.</span>
+                <span class="subtitle">Coming Soon</span>
             </div>
         </div>
     </Section>
@@ -103,8 +103,8 @@
                             <p class="pName">Men’s classic premium T-shirt (White)</p>
                             <!-- <button class="add-to-cart" data-product-id="1" data-product="Men’s classic premium T-shirt" data-price="15.99" data-image="images/a1.jpg">Add to Cart</button> -->
                             <div>
-                                <p class="price">$15.99</p>
-                                <button class="add-to-cart" data-product-id="1" data-product="Men’s classic premium T-shirt" data-price="15.99" data-image="images/a1.jpg">  <img src="images/exclude.svg" alt="" srcset=""></button>
+                                <p class="price">R299.00</p>
+                                <button class="add-to-cart" data-product-id="1" data-product="Men’s classic premium T-shirt" data-price="299.00" data-image="images/a1.jpg">  <img src="images/exclude.svg" alt="" srcset=""></button>
                             </div>
                         <!-- </a> -->
                         </div>
@@ -113,8 +113,8 @@
                             <img class="img" src="images/a2.jpg" alt="Slide 1">
                             <p class="pName">Men’s classic premium T-shirt (Black)</p>
                             <div>
-                                <p class="price">$15.99</p>
-                                <button class="add-to-cart" data-product-id="2" data-product="Men’s classic premium T-shirt" data-price="15.99" data-image="images/a2.jpg"><img src="images/exclude.svg" alt="" srcset="" tooltip="Add to Cart"></button>
+                                <p class="price">R299.00</p>
+                                <button class="add-to-cart" data-product-id="2" data-product="Men’s classic premium T-shirt" data-price="299.00" data-image="images/a2.jpg"><img src="images/exclude.svg" alt="" srcset="" tooltip="Add to Cart"></button>
                             </div>
                         <!-- </a> -->
 
@@ -124,8 +124,8 @@
                             <img class="img" src="images/a3.png" alt="Slide 1">
                             <p class="pName">Curved peak snapback</p>
                             <div>
-                                <p class="price">$32.99</p>
-                                <button class="add-to-cart" data-product-id="3" data-product="Curved peak snapback" data-price="32.99" data-image="images/a3.png"><img src="images/exclude.svg" alt="" srcset=""></button>
+                                <p class="price">R249.00</p>
+                                <button class="add-to-cart" data-product-id="3" data-product="Curved peak snapback" data-price="249.00" data-image="images/a3.png"><img src="images/exclude.svg" alt="" srcset=""></button>
                             </div>
                         <!-- </a> -->
                         </div>
@@ -134,8 +134,8 @@
                             <img class="img" src="images/a4.jpg" alt="Slide 1">
                             <p class="pName">Unisex standard hoodie</p>
                             <div>
-                                <p class="price">$32.99</p>
-                                <button class="add-to-cart" data-product-id="4" data-product="Unisex standard hoodie" data-price="32.99" data-image="images/a4.jpg"><img src="images/exclude.svg" alt="" srcset=""></button>
+                                <p class="price">R599.00</p>
+                                <button class="add-to-cart" data-product-id="4" data-product="Unisex standard hoodie" data-price="599.00" data-image="images/a4.jpg"><img src="images/exclude.svg" alt="" srcset=""></button>
                             </div>
                         <!-- </a> -->
                         </div>
@@ -143,16 +143,16 @@
                             <img class="img" src="images/rocket.jpg" alt="Slide 1">
                             <p class="pName">Toy  rockets ( Africa United 1’s )</p>
                             <div>
-                                <p class="price">$45.99</p>
-                                <button class="add-to-cart" data-product-id="5" data-product="Toy  rockets ( Africa United 1’s)" data-price="45.99" data-image="images/rocket.jpg"><img src="images/exclude.svg" alt="" srcset=""></button>
+                                <p class="price">R899.00</p>
+                                <button class="add-to-cart" data-product-id="5" data-product="Toy  rockets ( Africa United 1’s)" data-price="899.00" data-image="images/rocket.jpg"><img src="images/exclude.svg" alt="" srcset=""></button>
                             </div>
                         </div>
                         <div class="slide" data-product-id="6">
-                            <img class="img" src="images/rocket.jpg" alt="Slide 1">
+                            <img class="img" src="images/crew.jpeg" alt="Slide 1">
                             <p class="pName">Crew Socks</p>
                             <div>
-                                <p class="price">$11.64</p>
-                                <button class="add-to-cart" data-product-id="6" data-product="Crew Socks" data-price="11.64" data-image="images/rocket.jpg"><img src="images/exclude.svg" alt="" srcset=""></button>
+                                <p class="price">R199.00</p>
+                                <button class="add-to-cart" data-product-id="6" data-product="Crew Socks" data-price="199.00" data-image="images/crew.jpeg"><img src="images/exclude.svg" alt="" srcset=""></button>
                             </div>
                         </div>
                         

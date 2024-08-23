@@ -49,19 +49,15 @@
                     <span class="cont">Contact</span>
                     <a href="#">Have an account? <span class="fitIn">Login</span></a>
                 </div>
-                <!-- <form method="POST" action="https://checkout.flutterwave.com/v3/hosted/pay"> -->
-                <form method="POST" action="email.php">
+                <form method="POST" action="order_confirmation.php" id="checkout-form">
                 <div class="input">
                     <input type="email" name="email" id="email" placeholder="Email Address" required>
-                    <input type="hidden" name="public_key" value="FLWPUBK_TEST-ac960a48cf2670df7c3d8a479ddb6869-X" />
                     <input type="hidden" name="amount" id="amount"/>
-                <input type="hidden" name="currency" value="USD" />
-                <input type="hidden" name="tx_ref" value="txref-81123" />
-                <input type="hidden" name="meta[source]" value="docs-html-test" />
+                
                 </div>
                 <div class="input">
                     <div class="ship">Shipping Address</div>
-<select name="country">
+<select name="country" id="country">
         <option> -- Select Country --</option>
         <option> Afghanistan </option>
         <option> Albania </option>
@@ -261,23 +257,22 @@
 </select>
                 </div>
                 <div class="sides">
-                    <input type="text" id="space" placeholder="First Name" name="name" id="name" required>
-                    <input type="text" placeholder="Last Name" name="name" id="name" required>
+                    <input type="text" id="space" placeholder="First Name" name="first_name" id="first_name" required>
+                    <input type="text" placeholder="Last Name" name="last_name" id="last_name" required>
                 </div>
                 <div class="input">
-                    <input type="text" placeholder="Address" name="address" required>
+                    <input type="text" placeholder="Address" id="address" name="address" required>
                 </div>
                 <div class="sides">
-                    <input type="text" id="space" placeholder="City" name="city" required>
-                    <input type="text" placeholder="Postal Code(optional)" name="postalCode" required>
+                    <input type="text" id="space" placeholder="City" id="city" name="city" required>
+                    <input type="text" placeholder="Postal Code(optional)" name="postalCode" id="postalCode" required>
                 </div>
                 <div class="input">
-                    <input type="text" id="top" name="phone" placeholder="Phone Number" required>
+                    <input type="text" id="phone" name="phone" placeholder="Phone Number" required>
                 </div>
                 <div class="divide">
                     <span><a href="cart.php"> Return to Cart</a></span>
-                    <!-- <input type="submit" id="start-payment-button"  value="Confirm Order"> -->
-                     <button>Send</button>
+                     <!-- <button>Send</button> -->
                     <button type="button" name="send" class="fire">Pay Confirm Order</button>
                 </div>
             </form>
@@ -285,21 +280,20 @@
             <!-- Fill Info Form End here -->
              <!-- Item Details Here -->
             <div class="items">
-                <div class="items-container"></div>
+                <div class="items-container" id="items"></div>
                 <div class="line"></div>
                 <div class="bend">
                     <span>Shipping + Handling</span>
-                    <span class="shipping-fee">$6.00</span>
+                    <span class="shipping-fee">R6.00</span>
                 </div>
                 <div class="line" id="dine"></div>
                 <div class="ing">
                     <span class="tot">Total </span>
-                    <div class="prind">USD<span class="dollar total-price">$0.00</span></div>
+                    <div class="prind">ZAR<span class="dollar total-price">$0.00</span></div>
                 </div>
-                <!-- <button onclick="clearCart()">Clear Cart</button> -->
             </div>
         <!-- Item details ends here -->
-
+       
         </div>
  </section>
  <!-- Main Content Ends Here -->
@@ -330,13 +324,19 @@
               <script src="https://checkout.flutterwave.com/v3.js"></script>
          <script>
 
-            var firstName = document.getElementById('name');
-            var lastName = document.getElementById('name');
-            var email = document.getElementById('email');
-            var amount = document.getElementById('amount');
-            var phone = document.getElementById('top');
+            const firstName = document.getElementById('first_name');
+            const lastName = document.getElementById('last_name');
+            const email = document.getElementById('email');
+            const amount = document.getElementById('amount');
+            const phone = document.getElementById('phone');
+            const address = document.getElementById('address');
+            const city = document.getElementById('city');
+            const postalCode = document.getElementById('postalCode');
+            const country = document.getElementById('country');
+            const items = document.getElementById('items');
  
             const submitButton =document.querySelector('.fire');
+            const form = document.getElementById('checkout-form');
             submitButton.addEventListener('click',makePayment);
 
             function makePayment() {
@@ -344,13 +344,9 @@
                     public_key: "FLWPUBK_TEST-ac960a48cf2670df7c3d8a479ddb6869-X",
                     tx_ref: 'afus'+Date.now(),
                     amount: amount.value.trim(),
-                    currency: "USD",
-                    payment_options: "card, bank",
-                    meta: {
-                        consumer_id: Date.now(),
-                        consumer_mac: "92a3-912ba-1192a",
-                    },
-                    redirect_url: "https://africaunitedspace.org",
+                    currency: "ZAR",
+                    payment_options: "card, ussd",
+                    // redirect_url: "order_confirmation.php",
                     customer: {
                         email: email.value.trim(),
                         phone_number: phone.value.trim(),
@@ -361,13 +357,46 @@
                         logo: "https://checkout.flutterwave.com/assets/img/rave-logo.png",
                     },
                     callback: function (data) {
-                        console.log("payment callback:", data);
+                        // flw_ref
+                        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        const cartItemsJson = JSON.stringify(cartItems);
+                // Create visible input elements directly
+            const txRefInput = document.createElement('input');
+            txRefInput.type = 'text';  // Set to 'text' to make it visible
+            txRefInput.name = 'tx_ref';
+            txRefInput.value = data.flw_ref;
+            form.appendChild(txRefInput);
+
+            const statusInput = document.createElement('input');
+            statusInput.type = 'text';  // Set to 'text' to make it visible
+            statusInput.name = 'status';
+            statusInput.value = data.status;
+            form.appendChild(statusInput);
+
+            const itemsInput = document.createElement('input');
+                itemsInput.type = 'hidden';
+                itemsInput.name = 'items';
+                itemsInput.value = cartItemsJson;
+                form.appendChild(itemsInput);
+
+            // Submit the form
+            form.submit();
+                    // Card numbber Testing: 4187427415564246
+                    clearCart();
+                    
                     },
                     onclose: function () {
-                        console.log("Payment cancelled!");
+                        alert("Payment cancelled!");
                     }
                 });
-            }
+        }
+        function createHiddenInput(name, value) {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.id = name;
+            input.value = value;
+            return input;
+        }
         
             document.addEventListener('DOMContentLoaded', () => {
                 const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
@@ -407,7 +436,7 @@
                             <div class="line"></div>
                             <div class="bend">
                                 <span>Subtotal</span>
-                                <span>$${(item.price * item.quantity).toFixed(2)}</span>
+                                <span>R${(item.price * item.quantity).toFixed(2)}</span>
                             </div>
                         `;
         
@@ -415,7 +444,7 @@
                     });
         
                     const finalTotal = total + shippingFee;
-                    totalPriceElement.textContent = `$${finalTotal.toFixed(2)}`;
+                    totalPriceElement.textContent = `R${finalTotal.toFixed(2)}`;
                     amount.value = finalTotal.toFixed(2);
                     console.log(amount.value.trim());
                     // console.log(email); // Print the email value
@@ -458,8 +487,8 @@
                 function clearCart() {
                     localStorage.removeItem('cartItems');
                     itemsContainer.innerHTML = '';
-                    totalPriceElement.textContent = '$0.00';
-                    amount = '0.00';
+                    totalPriceElement.textContent = 'R0.00';
+                    amount.value = '0.00';
                 }
         
                 updateCart();

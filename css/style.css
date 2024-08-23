@@ -79,6 +79,9 @@ padding: 0px;
     display: flex;
     flex-direction: column;
 }
+.demand img{
+    object-fit: contain;
+}
 .quantity{
     display: flex;
     justify-content: flex-start;
@@ -373,6 +376,11 @@ padding: 0px;
 }
 .hind{
     display: flex;
+}
+.hind img{
+    object-fit: contain;
+    width: 50px;
+    height: 350px;
 }
 .merch{
     display: flex;

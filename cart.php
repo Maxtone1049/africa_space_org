@@ -54,7 +54,7 @@
     <div class="Bline"></div>
     <div class="subT">
         <span class="word">Total</span>
-        <span class="total-price">$0.00</span>
+        <span class="total-price">R0.00</span>
         <span class="time">Shipping & Taxes are calculated at checkout</span>
         <a href="checkout.php">Checkout</a>
     </div>
@@ -106,7 +106,7 @@
 
                         itemDiv.innerHTML=`
                        <!-- Demand of the Product Section -->
-        <div class="demand ">
+        <div class="demand">
             <img src="${item.image}" alt="${item.name}">
             <div class="info">
                 <span class="productName">${item.name}</span>
@@ -118,7 +118,7 @@
                     <span class="sizeL">XL</span>
                     <span class="sizeL">2XL</span>
                 </div>
-                <span class="pricetag">$${item.price}</span>
+                <span class="pricetag">R${item.price}</span>
             </div>
         </div>
         <!-- Demand of the Product Section end -->
@@ -136,14 +136,14 @@
     
     <!-- Totla Price -->
     <div class="priceHead">
-        <span class="pricetag">$${(item.price * item.quantity).toFixed(2)}</span>
+        <span class="pricetag">R${(item.price * item.quantity).toFixed(2)}</span>
        </div>
    `;
                 itemsContainer.appendChild(itemDiv);
                     });
         
                     const finalTotal = total + shippingFee;
-                    totalPriceElement.textContent = `$${finalTotal.toFixed(2)}`;
+                    totalPriceElement.textContent = `R${finalTotal.toFixed(2)}`;
                 }
         
                 function increaseQuantity(productId) {
@@ -183,8 +183,8 @@
                 function clearCart() {
                     localStorage.removeItem('cartItems');
                     itemsContainer.innerHTML = '';
-                    totalPriceElement.textContent = '$0.00';
-                    priceFix.value = '0.00';
+                    totalPriceElement.textContent = 'R0.00';
+                    amount.value = '0.00';
                 }
         
                 updateCart();
