@@ -19,7 +19,7 @@
             <nav class="">
                 <button class="close">x</button>
                 <ul>
-                <li> <a href="about.php" class="touch">About Us</a></li>
+                <li> <a href="about" class="touch">About Us</a></li>
                     <li> <a href="#" class="touch">Contact Us</a></li>
                     <li> <a href="#" class="touch">Shop</a></li>
                 </ul>
@@ -196,7 +196,7 @@
                 <img src="images/logo-black.png" alt="">
                 <div class="quicklink">
                     <ul>
-                        <li><a href="about.php">About Us</a></li>
+                        <li><a href="about">About Us</a></li>
                         <li><a href="#">Contact Us</a></li>
                         <li><a href="#">Community</a></li>
                         <li><a href="#">Shop</a></li>

@@ -346,7 +346,6 @@
                     amount: amount.value.trim(),
                     currency: "ZAR",
                     payment_options: "card, ussd",
-                    // redirect_url: "order_confirmation.php",
                     customer: {
                         email: email.value.trim(),
                         phone_number: phone.value.trim(),
