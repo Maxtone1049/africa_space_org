@@ -51,7 +51,7 @@ if ($order_result->num_rows > 0) {
 
         // Fetch items for this order
         $item_query = "
-            SELECT item_name, item_price, item_quantity, item_image
+            SELECT item_name, item_price, item_quantity, item_image, item_size
             FROM order_items
             WHERE order_id = $order_id
         ";
@@ -65,7 +65,7 @@ if ($order_result->num_rows > 0) {
         $items_html = "";
         if ($item_result->num_rows > 0) {
             while ($item_row = $item_result->fetch_assoc()) {
-                $items_html .= "<p>{$item_row['item_name']} - Quantity: {$item_row['item_quantity']} - Price: {$item_row['item_price']}</p>";
+                $items_html .= "<p>{$item_row['item_name']} - Quantity: {$item_row['item_quantity']} - Price: {$item_row['item_price']} - Size: {$item_row['item_size']} </p>";
             }
         } else {
             $items_html = "No items found.";

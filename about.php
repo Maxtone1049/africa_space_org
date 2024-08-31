@@ -72,7 +72,7 @@
             <div class="sep">
                 <span class="big">Privacy Policy</span>
                 <span class="bh">Get a copy of our terms & Agreements</span>
-                <a href="#">Download</a>
+                <a href="file/AUS_Policy.pdf" target="_blank" >Download</a>
             </div>
         </div>
       </section>

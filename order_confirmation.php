@@ -9,12 +9,6 @@ $dbname = "ausdb";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 include('email.php');
-// include('adminmail.php');
-
-// Check connection
-    // echo '<pre>';
-    // print_r($_POST);
-    // echo '</pre>';
 
 
 // Sanitize POST data
@@ -53,9 +47,10 @@ if ($conn->query($order_sql) === TRUE) {
         $item_quantity = isset($item['quantity']) ? mysqli_real_escape_string($conn, $item['quantity']) : '';
         $item_price = isset($item['price']) ? mysqli_real_escape_string($conn, $item['price']) : '';
         $item_image = isset($item['image']) ? mysqli_real_escape_string($conn, $item['image']) : '';
+        $item_size = isset($item['size']) ? mysqli_real_escape_string($conn, $item['size']) : '';
 
-        $item_sql = "INSERT INTO order_items (order_id,item_id, item_name, item_price, item_quantity, item_image)
-        VALUES ('$order_id','$item_id', '$item_name', '$item_price', '$item_quantity', '$item_image')";
+        $item_sql = "INSERT INTO order_items (order_id,item_id, item_name, item_price, item_quantity, item_image,item_size)
+        VALUES ('$order_id','$item_id', '$item_name', '$item_price', '$item_quantity', '$item_image','$item_size')";
 
         $conn->query($item_sql);
     }

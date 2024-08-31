@@ -90,7 +90,7 @@
             <span class="lit">-- Our Trending Product</span>
             <span class="subLit">Pre-Order <br> Products</span>
             <span class="sube">get early access to our products</span>
-            <a href="cart.php">Visit Cart</a>
+            <a href="cart">Visit Cart</a>
         </div>
         <div class="carousel-wrapper">
             <button class="prev" onclick="scrollSlides(-1)">&#10094;</button>
@@ -98,53 +98,46 @@
                 <div class="carousel">
                     <div class="slides">
                         <div class="slide" data-product-id="1">
-                            <!-- <a href="cart.php"> -->
+                            
                             <img class="img" src="images/a1.jpg" alt="Slide 1">
                             <p class="pName">Men’s classic premium T-shirt (White)</p>
-                            <!-- <button class="add-to-cart" data-product-id="1" data-product="Men’s classic premium T-shirt" data-price="15.99" data-image="images/a1.jpg">Add to Cart</button> -->
-                            <div>
+                          <div>
                                 <p class="price">R299.00</p>
-                                <button class="add-to-cart" data-product-id="1" data-product="Men’s classic premium T-shirt" data-price="299.00" data-image="images/a1.jpg">  <img src="images/exclude.svg" alt="" srcset=""></button>
+                                <button class="add-to-cart" data-product-id="1" data-product="Men’s classic premium T-shirt" data-price="299.00" data-image="images/a1.jpg" data-requires-size="true">  <img src="images/exclude.svg" alt="" srcset=""></button>
                             </div>
-                        <!-- </a> -->
+                        
                         </div>
                         <div class="slide" data-product-id="2">
-                            <!-- <a href="cart.php"> -->
                             <img class="img" src="images/a2.jpg" alt="Slide 1">
                             <p class="pName">Men’s classic premium T-shirt (Black)</p>
                             <div>
                                 <p class="price">R299.00</p>
-                                <button class="add-to-cart" data-product-id="2" data-product="Men’s classic premium T-shirt" data-price="299.00" data-image="images/a2.jpg"><img src="images/exclude.svg" alt="" srcset="" tooltip="Add to Cart"></button>
+                                <button class="add-to-cart" data-product-id="2" data-product="Men’s classic premium T-shirt" data-price="299.00" data-image="images/a2.jpg" data-requires-size="true"><img src="images/exclude.svg" alt="" srcset="" tooltip="Add to Cart"></button>
                             </div>
-                        <!-- </a> -->
 
                         </div>
                         <div class="slide" data-product-id="3">
-                            <!-- <a href="cart.php"> -->
                             <img class="img" src="images/a3.png" alt="Slide 1">
                             <p class="pName">Curved peak snapback</p>
                             <div>
                                 <p class="price">R249.00</p>
-                                <button class="add-to-cart" data-product-id="3" data-product="Curved peak snapback" data-price="249.00" data-image="images/a3.png"><img src="images/exclude.svg" alt="" srcset=""></button>
+                                <button class="add-to-cart" data-product-id="3" data-product="Curved peak snapback" data-price="249.00" data-image="images/a3.png" data-requires-size="true"><img src="images/exclude.svg" alt="" srcset=""></button>
                             </div>
-                        <!-- </a> -->
                         </div>
                         <div class="slide" data-product-id="4">
-                            <!-- <a href="cart.php"> -->
                             <img class="img" src="images/a4.jpg" alt="Slide 1">
                             <p class="pName">Unisex standard hoodie</p>
                             <div>
                                 <p class="price">R599.00</p>
-                                <button class="add-to-cart" data-product-id="4" data-product="Unisex standard hoodie" data-price="599.00" data-image="images/a4.jpg"><img src="images/exclude.svg" alt="" srcset=""></button>
+                                <button class="add-to-cart" data-product-id="4" data-product="Unisex standard hoodie" data-price="599.00" data-image="images/a4.jpg" data-requires-size="true"><img src="images/exclude.svg" alt="" srcset=""></button>
                             </div>
-                        <!-- </a> -->
                         </div>
                         <div class="slide" data-product-id="5">
                             <img class="img" src="images/rocket.jpg" alt="Slide 1">
                             <p class="pName">Toy  rockets ( Africa United 1’s )</p>
                             <div>
                                 <p class="price">R899.00</p>
-                                <button class="add-to-cart" data-product-id="5" data-product="Toy  rockets ( Africa United 1’s)" data-price="899.00" data-image="images/rocket.jpg"><img src="images/exclude.svg" alt="" srcset=""></button>
+                                <button class="add-to-cart" data-product-id="5" data-product="Toy  rockets ( Africa United 1’s)" data-price="899.00" data-image="images/rocket.jpg" ><img src="images/exclude.svg" alt="" srcset=""></button>
                             </div>
                         </div>
                         <div class="slide" data-product-id="6">
@@ -152,7 +145,7 @@
                             <p class="pName">Crew Socks</p>
                             <div>
                                 <p class="price">R199.00</p>
-                                <button class="add-to-cart" data-product-id="6" data-product="Crew Socks" data-price="199.00" data-image="images/crew.jpeg"><img src="images/exclude.svg" alt="" srcset=""></button>
+                                <button class="add-to-cart" data-product-id="6" data-product="Crew Socks" data-price="199.00" data-image="images/crew.jpeg" data-requires-size="true"><img src="images/exclude.svg" alt="" srcset=""></button>
                             </div>
                         </div>
                         
@@ -183,8 +176,8 @@
                 <span>
                     of stargazers, explorers, and cosmic enthusiasts as we embark on a journey through the <br> cosmos like never before.
                 </span>
-               <form class="form" method="post" action="">
-                    <input class="mail" type="email" name="emal" id="" placeholder="Enter Email">
+               <form class="form" method="post" action="newsMail.php">
+                    <input class="mail" type="email" name="email" id="" placeholder="Enter Email" required>
                     <input class="submit" type="submit" value="Subscribe">
                </form>
             </div>
@@ -215,10 +208,8 @@
      <script src="js/script.js"></script>
      <!-- <script src="js/cart.js"></script> -->
       <script>
-        document.addEventListener('DOMContentLoaded', () => {
+     document.addEventListener('DOMContentLoaded', () => {
     const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    const cartElement = document.querySelector('.cart-items');
-    const totalPriceElement = document.querySelector('.total-price');
 
     document.querySelectorAll('.add-to-cart').forEach(button => {
         button.addEventListener('click', () => {
@@ -226,92 +217,35 @@
             const productName = button.getAttribute('data-product');
             const productPrice = parseFloat(button.getAttribute('data-price'));
             const productImage = button.getAttribute('data-image');
-            addItemToCart(productId, productName, productPrice, productImage);
-           
+            const requiresSize = button.getAttribute('data-requires-size') === 'true';
+            
+            addItemToCart(productId, productName, productPrice, productImage, requiresSize);
         });
     });
 
-    function addItemToCart(productId, productName, productPrice, productImage) {
+    function addItemToCart(productId, productName, productPrice, productImage, requiresSize) {
         const item = cartItems.find(item => item.id === productId);
         if (item) {
             item.quantity++;
-            alert(productName + " has been added " + "x " +item.quantity );
+            alert(productName + " has been added " + "x " + item.quantity);
         } else {
-            cartItems.push({ id: productId, name: productName, price: productPrice, image: productImage, quantity: 1 });
+            cartItems.push({
+                id: productId,
+                name: productName,
+                price: productPrice,
+                image: productImage,
+                quantity: 1,
+                requiresSize: requiresSize,
+            });
         }
-        // updateCart();
         saveCart();
     }
-
-    function removeItemFromCart(productId) {
-        const itemIndex = cartItems.findIndex(item => item.id === productId);
-        if (itemIndex !== -1) {
-            cartItems.splice(itemIndex, 1);
-        }
-        // updateCart();
-        saveCart();
-    }
-
-    function increaseQuantity(productId) {
-        const item = cartItems.find(item => item.id === productId);
-        if (item) {
-            item.quantity++;
-        }
-        // updateCart();
-        saveCart();
-    }
-
-    function decreaseQuantity(productId) {
-        const item = cartItems.find(item => item.id === productId);
-        if (item && item.quantity > 1) {
-            item.quantity--;
-        } else if (item && item.quantity === 1) {
-            removeItemFromCart(productId);
-            return; // Exit early since removeItemFromCart calls updateCart and saveCart
-        }
-        // updateCart();
-        saveCart();
-    }
-
-    // function updateCart() {
-    //     cartElement.innerHTML = '';
-    //     let total = 0;
-    //     cartItems.forEach(item => {
-    //         const li = document.createElement('li');
-    //         const img = document.createElement('img');
-    //         img.src = item.image;
-    //         img.alt = item.name;
-    //         img.style.width = '50px'; // Adjust as needed
-
-    //         li.textContent = `${item.name} - $${item.price.toFixed(2)} x ${item.quantity}`;
-    //         const increaseButton = document.createElement('button');
-    //         increaseButton.textContent = '+';
-    //         increaseButton.addEventListener('click', () => {
-    //             increaseQuantity(item.id);
-    //         });
-
-    //         const decreaseButton = document.createElement('button');
-    //         decreaseButton.textContent = '-';
-    //         decreaseButton.addEventListener('click', () => {
-    //             decreaseQuantity(item.id);
-    //         });
-
-    //         li.insertBefore(img, li.firstChild);
-    //         li.appendChild(increaseButton);
-    //         li.appendChild(decreaseButton);
-    //         cartElement.appendChild(li);
-    //         total += item.price * item.quantity;
-    //     });
-    //     totalPriceElement.textContent = `Total: $${total.toFixed(2)}`;
-    // }
 
     function saveCart() {
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
     }
-
-    // Initialize cart display
-    // updateCart();
 });
+
 
       </script>
 </body>

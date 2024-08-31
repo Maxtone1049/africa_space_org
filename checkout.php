@@ -271,7 +271,7 @@
                     <input type="text" id="phone" name="phone" placeholder="Phone Number" required>
                 </div>
                 <div class="divide">
-                    <span><a href="cart.php"> Return to Cart</a></span>
+                    <span><a href="cart"> Return to Cart</a></span>
                      <!-- <button>Send</button> -->
                     <button type="button" name="send" class="fire">Pay Confirm Order</button>
                 </div>
@@ -284,12 +284,17 @@
                 <div class="line"></div>
                 <div class="bend">
                     <span>Shipping + Handling</span>
-                    <span class="shipping-fee">R6.00</span>
+                    <span class="shipping-fee">FREE</span>
+                </div>
+                <div class="bend">
+                    <span>VAT</span>
+                    <span class="shipping-fee">15%</span>
+                    <span class="vatAmount">0.00</span>
                 </div>
                 <div class="line" id="dine"></div>
                 <div class="ing">
                     <span class="tot">Total </span>
-                    <div class="prind">ZAR<span class="dollar total-price">$0.00</span></div>
+                    <div class="prind">ZAR<span class="dollar total-price">R0.00</span></div>
                 </div>
             </div>
         <!-- Item details ends here -->
@@ -400,6 +405,7 @@
             document.addEventListener('DOMContentLoaded', () => {
                 const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
                 const totalPriceElement = document.querySelector('.total-price');
+                const vatAmountElemenet = document.querySelector('.vatAmount');
                 const itemsContainer = document.querySelector('.items-container');
                 const shippingFee = 6.00; // Example fixed shipping cost
         
@@ -414,6 +420,8 @@
                 function updateCart() {
                     itemsContainer.innerHTML = '';
                     let total = 0;
+                    const VATPercentage = 15; // 15% VAT
+                    const VATMultiplier = VATPercentage / 100;
         
                     cartItems.forEach(item => {
                         total += item.price * item.quantity;
@@ -426,7 +434,9 @@
                                 <img src="${item.image}" alt="${item.name}">
                                 <div class="merch">
                                     <span class="merchName">${item.name}</span>
-                                    <span class="merchDetail">Black | XL</span>
+                    ${item.requiresSize ?`<span class="merchDetail">Size | ${item.size}</span>`:
+                    ''}
+                                    
                                     <div class="quantity">
                                         <span>Quantity: ${item.quantity}</span>
                                     </div>
@@ -442,47 +452,16 @@
                         itemsContainer.appendChild(itemDiv);
                     });
         
-                    const finalTotal = total + shippingFee;
-                    totalPriceElement.textContent = `R${finalTotal.toFixed(2)}`;
-                    amount.value = finalTotal.toFixed(2);
+                    const finalTotal = total;
+                    const VATAmount = finalTotal * VATMultiplier;
+                    vatAmountElemenet.textContent = `R${VATAmount.toFixed(2)}`;
+                    amount.value = finalTotal + VATAmount;
+                    totalPriceElement.textContent = `R${amount.value}`;
                     console.log(amount.value.trim());
                     // console.log(email); // Print the email value
                 }
         
-                function increaseQuantity(productId) {
-                    const item = cartItems.find(item => item.id === productId);
-                    if (item) {
-                        item.quantity++;
-                    }
-                    saveCart();
-                    updateCart();
-                }
-        
-                function decreaseQuantity(productId) {
-                    const item = cartItems.find(item => item.id === productId);
-                    if (item && item.quantity > 1) {
-                        item.quantity--;
-                    } else if (item && item.quantity === 1) {
-                        removeItemFromCart(productId);
-                        return;
-                    }
-                    saveCart();
-                    updateCart();
-                }
-        
-                function removeItemFromCart(productId) {
-                    const itemIndex = cartItems.findIndex(item => item.id === productId);
-                    if (itemIndex !== -1) {
-                        cartItems.splice(itemIndex, 1);
-                    }
-                    saveCart();
-                    updateCart();
-                }
-        
-                function saveCart() {
-                    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-                }
-        
+               
                 function clearCart() {
                     localStorage.removeItem('cartItems');
                     itemsContainer.innerHTML = '';
@@ -493,10 +472,8 @@
                 updateCart();
         
                 window.clearCart = clearCart;
-                window.increaseQuantity = increaseQuantity;
-                window.decreaseQuantity = decreaseQuantity;
-                window.removeItemFromCart = removeItemFromCart;
-            });
+                window.changeSize = changeSize;
+                });
         </script>
         
 </body>
