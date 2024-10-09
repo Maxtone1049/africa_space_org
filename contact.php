@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="images/icon.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
-    <title>About Us</title>
+    <title>Contact | Africa United Space</title>
 </head>
 <body>
-       <!-- Header Section Start -->
-       <div class="header">
+    <!-- Header Section Start -->
+    <div class="header">
         <!-- header start -->
         <header class="subhead">
             <a href="."> <img src="images/logo.png" alt="" srcset=""></a>
             <nav class="">
                 <button class="close">x</button>
                 <ul>
-                    <li> <a href="about" class="touch active">About Us</a></li>
+                <li> <a href="about" class="touch">About Us</a></li>
                     <li> <a href="contact" class="touch">Contact Us</a></li>
                     <li> <a href="#" class="touch">Shop</a></li>
                 </ul>
                 <ul class="pack">
-                   <li> <a href="#" class="sign">Sign in</a></li>
-                   <li> <a href="#" class="signup">Sign up</a></li>
+                   <li> <a href="login" class="sign">Sign in</a></li>
+                   <li> <a href="signup" class="signup">Sign up</a></li>
                    <!-- <div class="pack"> -->
                        <!-- <a href="#"><img class="pinch" src="images/shopping-basket.png" alt="shopping-basket.png"></a>
                        <img class="p" src="images/Avatar.svg" alt="Avatar.svg">
@@ -40,44 +40,30 @@
          <div class="container">
             <div class="mainone">
                 <span>
-                About Us
+                Contact Us
                 </span>
+                <h5>
+                of stargazers, explorers, and cosmic enthusiasts as we embark on a journey through the cosmos like never before.
+</h5>
             </div>
             <div class="maintwo">
-                <p class='headWrite'>Africa United Space</p>
-                <p class="write">Our primary services is to provide the African continent with Space<br> Shuttle services, both to government and private individual's, also<br> to create awareness about space explorations to the African<br> people.
-                we believe the future is full of possibilities,<br>we want to be able to serve in the space sector.</p>
+                <form action="" method="POST">
+                   <div class="input">
+                   <input  type="text" placeholder="Enter your email" required>
+                   </div>
+                   <div class="input">
+                   <textarea name="" id="" placeholder="Your Message"  rows="10"></textarea>
+                   </div>
+                   
+                   <button type="submit">Send</button>
+                </form>
             </div>
          </div>
          <!-- Split Contents -->
     </div>
-    <section class="tent">
-        <div class="tentone">
-            <img src="images/globe.png" alt="">
-            <p class="topHead">Mission</p>
-            <p class="subText">we are thriving from the foot steps of the  previous  generations, the coming generation should be able to believe in 
-            future possibilities, they should be able to harness the power  of Human capability especially here in Africa</p>
-            <p class="ceo">Rasheed Olubukola Damilare</p>
-        </div>
-        <div class="tentone" id="tear">
-            <img src="images/idea.png" alt="">
-            <p class="topHead">Vision</p>
-            <p class="subText">Our vision at Africa united space is to be the first private company to successfully launch Rockets to Space and hopefully In the future provide Jobs and  opportunities and eventually open up the space Industry in the region of Africa</p>
-            <p class="ceo">Rasheed Olubukola Damilare</p>
-        </div>
-    </section>
-    <!-- Privacy Policy Section -->
-    <section class="int">
-        <div class="den">
-            <div class="sep">
-                <span class="big">Privacy Policy</span>
-                <span class="bh">Get a copy of our terms & Agreements</span>
-                <a href="file/AUS_Policy.pdf" target="_blank" >Download</a>
-            </div>
-        </div>
-      </section>
-     <!-- Privacy Policy Section ends -->
-    <footer>
+    <!-- Header Section Ends -->
+         <!-- footer Starts -->
+         <footer>
             <div class="spread">
                 <img src="images/logo-black.png" alt="">
                 <div class="quicklink">
@@ -99,6 +85,5 @@
         </footer>
           <!-- footer ends -->
      <script src="js/script.js"></script>
-    
 </body>
 </html>

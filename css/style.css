@@ -337,6 +337,17 @@ padding: 0px;
     padding-bottom: 15px;
     padding-left: 5px;
 }
+.input textarea{
+    width: 100%;
+    outline: none;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: none;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 5px;
+}
 .ship{
     font-size: 14px;
     margin-bottom: 10px;
@@ -575,6 +586,11 @@ nav a {
         font-weight: 600;
         
     }
+    .container .mainone h5{
+        font-size: 14px;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-weight: 400;
+    }
     .container .maintwo{
         padding-top: 10px;
         padding-left: 10px;
@@ -582,6 +598,56 @@ nav a {
         display: flex;
         flex-direction: column;
         
+    }
+   .container .maintwo .formhead{
+    margin-bottom: 15px;
+   }
+   .container .maintwo .formhead p{
+    font-size: 15px;
+   }
+   .container .maintwo form .password{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 20px;
+   }
+   .maintwo form .alte span{
+    font-size: 15px;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: 800;
+   }
+   .maintwo form .alte{
+    margin-bottom: 15px;
+   }
+   .maintwo form button{
+    background-color: #B20000;
+    color: white;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 15px;
+    border-radius: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    padding: 15px;
+   }
+   .maintwo form .alte .a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 15px;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    }
+   .maintwo form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    }
+   .container .maintwo  h3{
+        color: white;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 20px;
     }
     .container .maintwo span{
         color:white;
@@ -605,7 +671,7 @@ nav a {
         color: white;
         font-family: "Plus Jakarta Sans", sans-serif;
     }
-    .container .maintwo a{
+    .container .maintwo .tuh{
         margin-top: 20px;
         text-decoration: none;
         color: white;
@@ -975,6 +1041,7 @@ nav a {
         padding-left: 10px;
         padding-right: 10px;
         margin-bottom: 30px;
+        margin-top: 20px;
         font-size: 16px;
         font-weight: 600;
     }

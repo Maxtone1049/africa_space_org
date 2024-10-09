@@ -72,7 +72,7 @@
             <div class="quicklink">
                 <ul>
                     <li><a href="about">About Us</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="contact">Contact Us</a></li>
                     <li><a href="#">Community</a></li>
                     <li><a href="#">Shop</a></li>
                 </ul>

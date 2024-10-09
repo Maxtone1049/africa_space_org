@@ -20,12 +20,12 @@
                 <button class="close">x</button>
                 <ul>
                 <li> <a href="about" class="touch">About Us</a></li>
-                    <li> <a href="#" class="touch">Contact Us</a></li>
+                    <li> <a href="contact" class="touch">Contact Us</a></li>
                     <li> <a href="#" class="touch">Shop</a></li>
                 </ul>
                 <ul class="pack">
-                   <li> <a href="#" class="sign">Sign in</a></li>
-                   <li> <a href="#" class="signup">Sign up</a></li>
+                   <li> <a href="login" class="sign">Sign in</a></li>
+                   <li> <a href="signup" class="signup">Sign up</a></li>
                    <!-- <div class="pack"> -->
                        <!-- <a href="#"><img class="pinch" src="images/shopping-basket.png" alt="shopping-basket.png"></a>
                        <img class="p" src="images/Avatar.svg" alt="Avatar.svg">
@@ -46,7 +46,7 @@
             <div class="maintwo">
                 <span>Our primary services is to provide the African continent with Space<br> Shuttle services, both to government and private individual's, also<br> to create awareness about space explorations to the African<br> people.
                 we believe the future is full of possibilities,<br>we want to be able to serve in the space sector.</span>
-                <a href="#">Get Started</a>
+                <a class="tuh" href="#">Get Started</a>
             </div>
          </div>
          <!-- Split Contents -->
@@ -190,7 +190,7 @@
                 <div class="quicklink">
                     <ul>
                         <li><a href="about">About Us</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="contact">Contact Us</a></li>
                         <li><a href="#">Community</a></li>
                         <li><a href="#">Shop</a></li>
                     </ul>
