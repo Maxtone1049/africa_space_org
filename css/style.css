@@ -326,17 +326,21 @@ padding: 0px;
     padding-right: 25px;
     font-weight: 600;
 }
+.input{
+    background: #fff;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
 .input input{
     width: 100%;
     outline: none;
     font-family: "Plus Jakarta Sans", sans-serif;
-    border-radius: 10px;
-    margin-bottom: 10px;
+    background: none;
     border: none;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 5px;
-}
+    }
 .input textarea{
     width: 100%;
     outline: none;
@@ -345,6 +349,7 @@ padding: 0px;
     margin-bottom: 10px;
     border: none;
     padding-top: 15px;
+    background: none;
     padding-bottom: 15px;
     padding-left: 5px;
 }
@@ -605,12 +610,17 @@ nav a {
    .container .maintwo .formhead p{
     font-size: 15px;
    }
+   .container .maintwo form .password input{
+    width: 100%;
+    border: none;
+    outline: none;
+   }
    .container .maintwo form .password{
     margin-top: 15px;
     margin-bottom: 15px;
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     gap: 20px;
    }
    .maintwo form .alte span{
@@ -1049,6 +1059,19 @@ nav a {
         color: black;
         text-decoration: none;
     }
+   footer .socials{
+    margin-top: 15px;
+        display: flex;
+        width: 250px;
+        justify-content: space-around;
+        /* background: black; */
+    }
+
+    footer .socials img{
+        width: 50px;
+        height:70px;
+        object-fit:contain;
+    }
     .spread{
         display: flex;
         flex-direction: column;
@@ -1140,8 +1163,236 @@ nav a {
         font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
+
+    /* store CSS below */
+    .product-grid a{
+        text-decoration: none;
+        color: black;
+    }
+    .description{
+        font-weight: 500;
+        margin-top: 20px;
+    }
+    .product-grid {
+        margin-top: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding: 0 20px;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        text-decoration: none;
+    }
+    
+    .product-card {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: #F8FAFC;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        position: relative;
+        text-align: center;
+        width: 250px;
+        height: 190px;
+    }
+    .product-card .seperate{
+        display: flex;
+        justify-content: space-between;
+    }
+    .product-card .seperate img{
+        width: 30px;
+        object-fit: contain;
+    }
+    .product-card .pre-order-btn {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: #000;
+        color: #fff;
+        border: none;
+        padding: 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 12px;
+    }
+    
+    .product-card .discount, .product-card .price, .product-card .description {
+        margin-top: 10px;
+    }
+    .product-card .discount{
+        background: #fff;
+        padding: 8px;
+        font-size: 10px;
+        color: black;
+        border-radius: 5px;
+    }
+    .product-card .price {
+        font-size: 14px;
+        color: #B20000;
+        font-weight: 600;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    
+    /* Pagination */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    
+    .pagination span {
+        cursor: pointer;
+        padding: 8px 12px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        border-radius: 5px;
+    }
+    
+    .pagination span:hover {
+        background-color: #000;
+        color: #fff;
+    }
+    /* Store css end */
+
+    /* Details Section Styling */
+    .product-section {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+    }
+    
+    .product-gallery {
+        position: relative;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        flex: 1;
+    }
+    
+    .product-gallery img {
+        width: 250px;
+        border-radius: 8px;
+    }
+    
+    .gallery-nav {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        position: absolute;
+        top: 50%;
+        font-size: 2rem;
+        color: #000;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .product-details {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        flex: 1;
+    }
+    .product-details h1{
+        margin-bottom: 10px;
+    }
+    .product-details hr{
+        margin-bottom: 10px;
+    }
+    .product-details .content{
+        margin-bottom: 10px;
+        font-weight: 700;
+        font-size: 16px;
+    }
+    .product-details .price{
+        margin-bottom: 10px;
+        color: #B20000;
+        font-weight: 600;
+        font-size: 16px;
+    }
+    .like{
+        font-size: 15px;
+        font-weight: 700;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    /* Size Chart */
+    .size-chart {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        padding: 20px;
+        margin-top: 20px;
+    }
+    
+    .size-chart table {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+    
+    .size-chart th, .size-chart td {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
+    .quan{
+        margin-top: 15px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .quan .cartAdd{
+        background: #000;
+        color: #fff;
+        padding: 15px;
+        border-radius: 15px;
+        font-size: 14px;
+        font-weight: 600;
+        width: 150px;
+    }
+
+    .quan .count input{
+        text-align: center;
+        border: none;
+        width: 40px;
+        outline: none;
+    }
+    .quan .count .quantity-btn{
+        border-radius: 100px;
+        border: 1px #000 solid;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 7px;
+        padding-right: 7px;
+        background: none;
+        outline: none;
+    }
+    .quan .count{
+        display: flex;
+        justify-content: space-between;
+        border: #000 1px solid;
+        padding: 10px;
+        border-radius: 20px;
+        width: 150px;
+    }
+
+    .color-options .color-btn{
+        width: 50px;
+        height: 40px;
+        border-radius: 5px;
+        border: 1px #000 solid;
+    }
+    .black{
+        background-color: #000;
+    }
+    .gray{
+        background-color: gray;
+    }
+    .white{
+        background: hsl(0, 13%, 95%);
+    }
+
 /* Responsive Styles */
 @media only screen and (min-width: 769px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
   
     .header{
         padding-left: 30px;
@@ -1197,6 +1448,9 @@ nav a {
     .container .maintwo .write{
         font-size:15px;
     }
+    .product-section {
+        flex-direction: row;
+    }
     .tent{
         flex-direction: row;
         justify-content: center;
@@ -1223,8 +1477,6 @@ nav a {
     #tear{
         margin-left: 30px;
     }
-   
-
     .checkin{
         flex-direction: row;
         justify-content: center;
@@ -1366,6 +1618,10 @@ nav a {
         padding-left: 60px;
         padding-right: 60px;
         }
+        .product-grid{
+            padding-left: 60px;
+            padding-right: 60px;
+        }
     .quicklink ul{
         flex-direction: row;
     }
@@ -1450,9 +1706,13 @@ width: 230px;
         padding-left: 120px;
     padding-right: 120px;
     }
+    .product-grid{
+        padding-left: 120px;
+        padding-right: 120px;
+    }
     .news{
         padding-left: 120px;
-    padding-right: 120px;
+        padding-right: 120px;
     }
     .task{
         padding-left: 120px;
@@ -1479,9 +1739,13 @@ width: 230px;
     .carousel-wrapper{
         width: 900px;
     }
+    .product-grid{
+        padding-left: 240px;
+        padding-right: 240px;
+    }
 }
 @media only screen and (min-width:1400px){
     .carousel-wrapper{
         width: 1000px;
     }
-}
+    }

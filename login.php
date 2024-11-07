@@ -51,7 +51,7 @@ Lets get you back into the Cosmos
                         <p>Fill these few steps to continue</p>
                     </div>
                    <div class="input">
-                   <input  type="text" placeholder="Email Address" required>
+                   <input type="text" placeholder="Email Address" required>
                    </div>
                    <div class="input">
                    <input  type="password" placeholder="Password" required>
@@ -84,6 +84,12 @@ Lets get you back into the Cosmos
                 </div>
             </div>
             <p><a href="mailto:contact@africaunitedspace.org">[contact@africaunitedspace.org]</a></p>
+            <div class="socials">
+                <a href="https://www.instagram.com/africaunitedspace" target="_blank"><img src="images/twitter.webp" alt=""></a>
+                <a href="https://tiktok.com/africa.united.spa4" target="_blank"><img src="images/tiktok.webp" alt=""></a>
+                <a href="https://www.youtube.com/@Africaunited-c6w" target="_blank"><img src="images/tube.png" alt=""></a>
+                
+            </div>
         </footer>
           <!-- footer ends -->
      <script src="js/script.js"></script>

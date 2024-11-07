@@ -52,9 +52,9 @@
                    <div class="input">
                    <input  type="text" placeholder="Email Address" required>
                    </div>
-                   <div class="password input">
-                        <input  type="password" placeholder="Password" required>
-                        <input type="password" placeholder="Confirm Password" required>
+                   <div class="password">
+                        <input class="input" type="password" placeholder="Password" required>
+                        <input class="input" type="password" placeholder="Confirm Password" required>
                     </div>
                     <p class="alte"><a class="a" href="login"> Already have an account? <span>Login Here</span></a></p>
                     <button>Sign up</button>
@@ -84,6 +84,12 @@
                 </div>
             </div>
             <p><a href="mailto:contact@africaunitedspace.org">[contact@africaunitedspace.org]</a></p>
+            <div class="socials">
+                <a href="https://www.instagram.com/africaunitedspace" target="_blank"><img src="images/twitter.webp" alt=""></a>
+                <a href="https://tiktok.com/africa.united.spa4" target="_blank"><img src="images/tiktok.webp" alt=""></a>
+                <a href="https://www.youtube.com/@Africaunited-c6w" target="_blank"><img src="images/tube.png" alt=""></a>
+                
+            </div>
         </footer>
           <!-- footer ends -->
      <script src="js/script.js"></script>
