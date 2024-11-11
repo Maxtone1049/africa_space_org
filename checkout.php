@@ -1,3 +1,14 @@
+<?php
+
+session_start(); 
+
+if (!isset($_SESSION['user_id'])){
+    header('Location: login.php');
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,8 +35,10 @@
                 <li> <a href="#" class="rind">ACCESSORIES</a></li>
             </ul>
             <ul class="pack">
-               <li> <a href="#" class="sign">Sign in</a></li>
-               <li> <a href="#" class="signup">Sign up</a></li>
+            <?php if (!isset($_SESSION['user_id'])): ?>
+                        <li><a href="login.php" class="sign">Sign in</a></li>
+                        <li><a href="register.php" class="signup">Sign up</a></li>
+                    <?php endif; ?>
             </ul>
             <!-- <ul class="pack">
                <li><a href="cart.php"><img class="pinch" src="images/shopping-basket.png" alt="shopping-basket.png"></a></li>
@@ -335,151 +348,106 @@
               <script src="https://checkout.flutterwave.com/v3.js"></script>
          <script>
 
-            const firstName = document.getElementById('first_name');
-            const lastName = document.getElementById('last_name');
-            const email = document.getElementById('email');
-            const amount = document.getElementById('amount');
-            const phone = document.getElementById('phone');
-            const address = document.getElementById('address');
-            const city = document.getElementById('city');
-            const postalCode = document.getElementById('postalCode');
-            const country = document.getElementById('country');
-            const items = document.getElementById('items');
+
+                document.getElementById('checkout-form').addEventListener('submit', function(event) {
+                event.preventDefault();  // Prevent the default form submission
+
+                // Get values from form inputs
+                const firstName = document.getElementById('first_name').value;
+                const lastName = document.getElementById('last_name').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const address = document.getElementById('address').value;
+                const city = document.getElementById('city').value;
+                const postalCode = document.getElementById('postalCode').value;
+                const country = document.getElementById('country').value;
+
+                // Create an object to store the collected data
+                const formData = {
+                    firstName,
+                    lastName,
+                    email,
+                    phone,
+                    address,
+                    city,
+                    postalCode,
+                    country,
+                };
+
+    
+                });
+
  
             const submitButton =document.querySelector('.fire');
             const form = document.getElementById('checkout-form');
+            
             submitButton.addEventListener('click',makePayment);
 
-            function makePayment() {
-                FlutterwaveCheckout({
-                    public_key: "FLWPUBK_TEST-ac960a48cf2670df7c3d8a479ddb6869-X",
-                    tx_ref: 'afus'+Date.now(),
-                    amount: amount.value.trim(),
-                    currency: "ZAR",
-                    payment_options: "card, ussd",
-                    customer: {
-                        email: email.value.trim(),
-                        phone_number: phone.value.trim(),
-                        name: `${firstName} ${lastName}`,
-                    },
-                    customizations: {
-                        title: "Africa united space",
-                        logo: "https://checkout.flutterwave.com/assets/img/rave-logo.png",
-                    },
-                    callback: function (data) {
-                        // flw_ref
-                        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        const cartItemsJson = JSON.stringify(cartItems);
-                // Create visible input elements directly
-            const txRefInput = document.createElement('input');
-            txRefInput.type = 'text';  // Set to 'text' to make it visible
-            txRefInput.name = 'tx_ref';
-            txRefInput.value = data.flw_ref;
-            form.appendChild(txRefInput);
+                 
+                const cartData = JSON.parse(localStorage.getItem('cartData'));
+                // console.log(cartData.items);
+                
+                
+                let lastItem = null;
 
-            const statusInput = document.createElement('input');
-            statusInput.type = 'text';  // Set to 'text' to make it visible
-            statusInput.name = 'status';
-            statusInput.value = data.status;
-            form.appendChild(statusInput);
+                if (cartData && Array.isArray(cartData.items)) {
+                    cartData.items.forEach(item => {
+                        console.log("Item:", item);
+                        console.log("Quantity:", item.quantity);
+                        console.log("Price:", item.price);
+                        console.log("Colour:", item.colour);
+                        console.log("Image:", item.image);
+                        console.log("Name:", item.name);
+                        console.log("Size:", item.size);
 
-            const itemsInput = document.createElement('input');
-                itemsInput.type = 'hidden';
-                itemsInput.name = 'items';
-                itemsInput.value = cartItemsJson;
-                form.appendChild(itemsInput);
-
-            // Submit the form
-            form.submit();
-                    // Card numbber Testing: 4187427415564246
-                    clearCart();
-                    
-                    },
-                    onclose: function () {
-                        alert("Payment cancelled!");
-                    }
-                });
-        }
-        function createHiddenInput(name, value) {
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.id = name;
-            input.value = value;
-            return input;
-        }
-        
-            document.addEventListener('DOMContentLoaded', () => {
-                const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-                const totalPriceElement = document.querySelector('.total-price');
-                const vatAmountElemenet = document.querySelector('.vatAmount');
-                const itemsContainer = document.querySelector('.items-container');
-                const shippingFee = 6.00; // Example fixed shipping cost
-        
-                function checkAmount() {
-                    if (priceFix != '') {
-                        makePayment();
-                    } else {
-                        alert('Price cannot be Empty!');
-                    }
-                }
-        
-                function updateCart() {
-                    itemsContainer.innerHTML = '';
-                    let total = 0;
-                    const VATPercentage = 15; // 15% VAT
-                    const VATMultiplier = VATPercentage / 100;
-        
-                    cartItems.forEach(item => {
-                        total += item.price * item.quantity;
-        
-                        const itemDiv = document.createElement('div');
-                        itemDiv.classList.add('items');
-        
-                        itemDiv.innerHTML = `
-                            <div class="hind">
-                                <img src="${item.image}" alt="${item.name}">
-                                <div class="merch">
-                                    <span class="merchName">${item.name}</span>
-                    ${item.requiresSize ?`<span class="merchDetail">Size | ${item.size}</span>`:
-                    ''}
-                                    
-                                    <div class="quantity">
-                                        <span>Quantity: ${item.quantity}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="line"></div>
-                            <div class="bend">
-                                <span>Subtotal</span>
-                                <span>R${(item.price * item.quantity).toFixed(2)}</span>
-                            </div>
-                        `;
-        
-                        itemsContainer.appendChild(itemDiv);
+                        lastItem = item;
                     });
-        
-                    const finalTotal = total;
-                    const VATAmount = finalTotal * VATMultiplier;
-                    vatAmountElemenet.textContent = `R${VATAmount.toFixed(2)}`;
-                    amount.value = finalTotal + VATAmount;
-                    totalPriceElement.textContent = `R${amount.value}`;
-                    console.log(amount.value.trim());
-                    // console.log(email); // Print the email value
                 }
-        
-               
-                function clearCart() {
-                    localStorage.removeItem('cartItems');
-                    itemsContainer.innerHTML = '';
-                    totalPriceElement.textContent = 'R0.00';
-                    amount.value = '0.00';
+
+                if (lastItem) {
+                    console.log("Last Item Name:", lastItem.name);
+                    console.log("Last Item Quantity:", lastItem.quantity);
+                    console.log("Last Item Price:", lastItem.price);
                 }
-        
-                updateCart();
-        
-                window.clearCart = clearCart;
-                window.changeSize = changeSize;
-                });
+
+                            
+
+                      
+
+
+                    
+
+                function makePayment() {
+                        // FlutterwaveCheckout({
+                        //     public_key: "FLWPUBK_TEST-ac960a48cf2670df7c3d8a479ddb6869-X",
+                        //     tx_ref: 'afus'+Date.now(),
+                        //     amount: amount.value.trim(),
+                        //     currency: "ZAR",
+                        //     payment_options: "card, ussd",
+                        //     customer: {
+                        //         email: email.value.trim(),
+                        //         phone_number: phone.value.trim(),
+                        //         name: `${firstName} ${lastName}`,
+                        //     },
+                        //     customizations: {
+                        //         title: "Africa united space",
+                        //         logo: "https://checkout.flutterwave.com/assets/img/rave-logo.png",
+                        //     },
+                        
+                           
+                        // });
+
+
+                        // const cartItems = JSON.parse(localStorage.getItem('cartData')) || [];
+                        // console.log(cartItems); 
+                }
+
+                
+
+
+
+   
+       
         </script>
         
 </body>

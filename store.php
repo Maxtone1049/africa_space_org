@@ -1,3 +1,15 @@
+<?php
+
+session_start(); 
+
+if (!isset($_SESSION['user_id'])){
+    header('Location: login.php');
+    exit();
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +21,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     <title>Store | Africa United Space</title>
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         /* Add some basic styles for active size */
         .size-option {
@@ -22,126 +35,45 @@
         background: #B20000;
         color: #fff;
     }
+    
+
+    
+    .na{
+        display: none !important;
+    }
+    .de{
+        display: none;
+    }
+
     </style>
 </head>
+
+
 <body>
-    <!-- header start -->
-    <div class="task">
+
+<div class="task">
         <header class="subhead">
             <a href="."><img src="images/logo.png" alt="Logo"></a>
-            <nav class="">
+            <nav>
                 <button class="close">x</button>
                 <ul class="pack">
-                    <li><a href="#" class="sign">Sign in</a></li>
-                    <li><a href="#" class="signup">Sign up</a></li>
+                    <?php if (!isset($_SESSION['user_id'])): ?>
+                        <li><a href="login.php" class="sign">Sign in</a></li>
+                        <li><a href="register.php" class="signup">Sign up</a></li>
+                    <?php endif; ?>
                 </ul>
             </nav>
             <button class="menu-toggle">☰</button>
         </header>
     </div>
-    <!-- header end -->
 
     <section class="maindock">
         <span class="change">STORE</span>
-        <div class="product-grid">
-            <!-- Product Card -->
-          <a href="detailpage">
-          <div class="product-card">
-                <div class="seperate">
-                <button class="pre-order-btn">Pre-order now</button>
-                <img src="images/cartbin.png" alt="">
-                </div>
-                <div class="seperate">
-                <p class="discount">50% Discount</p>
-                <p class="price">14ZAR</p>
-                </div>
-            </div>
-            <p class="description">Merch T Shirt AUS branded</p>
-          </a>
-          <a href="detailpage">
-          <div class="product-card">
-                <div class="seperate">
-                <button class="pre-order-btn">Pre-order now</button>
-                <img src="images/cartbin.png" alt="">
-                </div>
-                <div class="seperate">
-                <p class="discount">50% Discount</p>
-                <p class="price">14ZAR</p>
-                </div>
-            </div>
-            <p class="description">Merch T Shirt AUS branded</p>
-          </a>
-          <a href="detailpage">
-          <div class="product-card">
-                <div class="seperate">
-                <button class="pre-order-btn">Pre-order now</button>
-                <img src="images/cartbin.png" alt="">
-                </div>
-                <div class="seperate">
-                <p class="discount">50% Discount</p>
-                <p class="price">14ZAR</p>
-                </div>
-            </div>
-            <p class="description">Merch T Shirt AUS branded</p>
-          </a>
-          <a href="detailpage">
-          <div class="product-card">
-                <div class="seperate">
-                <button class="pre-order-btn">Pre-order now</button>
-                <img src="images/cartbin.png" alt="">
-                </div>
-                <div class="seperate">
-                <p class="discount">50% Discount</p>
-                <p class="price">14ZAR</p>
-                </div>
-            </div>
-            <p class="description">Merch T Shirt AUS branded</p>
-          </a>
-          <a href="detailpage">
-          <div class="product-card">
-                <div class="seperate">
-                <button class="pre-order-btn">Pre-order now</button>
-                <img src="images/cartbin.png" alt="">
-                </div>
-                <div class="seperate">
-                <p class="discount">50% Discount</p>
-                <p class="price">14ZAR</p>
-                </div>
-            </div>
-            <p class="description">Merch T Shirt AUS branded</p>
-          </a>
-          <a href="detailpage">
-          <div class="product-card">
-                <div class="seperate">
-                <button class="pre-order-btn">Pre-order now</button>
-                <img src="images/cartbin.png" alt="">
-                </div>
-                <div class="seperate">
-                <p class="discount">50% Discount</p>
-                <p class="price">14ZAR</p>
-                </div>
-            </div>
-            <p class="description">Merch T Shirt AUS branded</p>
-          </a>
-          <a href="detailpage">
-          <div class="product-card">
-                <div class="seperate">
-                <button class="pre-order-btn">Pre-order now</button>
-                <img src="images/cartbin.png" alt="">
-                </div>
-                <div class="seperate">
-                <p class="discount">50% Discount</p>
-                <p class="price">14ZAR</p>
-                </div>
-            </div>
-            <p class="description">Merch T Shirt AUS branded</p>
-          </a>
-                 
-            <!-- Repeat Product Cards -->
-          <!-- ... Add as many cards as you need -->
+        <div id="product-grid" class="product-grid">
+            <!-- Product data will be populated here by storeJs.js -->
         </div>
-         <!-- Pagination -->
-         <div class="pagination">
+
+        <div class="pagination">
             <span>&lt;</span>
             <span>1</span>
             <span>2</span>
@@ -152,7 +84,6 @@
         </div>
     </section>
 
-    <!-- footer Starts -->
     <footer>
         <div class="spread">
             <img src="images/logo-black.png" alt="Logo">
@@ -160,8 +91,6 @@
                 <ul>
                     <li><a href="about">About Us</a></li>
                     <li><a href="contact">Contact Us</a></li>
-                    <li><a href="#">Community</a></li>
-                    <li><a href="#">Shop</a></li>
                 </ul>
             </div>
             <div class="policy">
@@ -172,15 +101,9 @@
             </div>
         </div>
         <p><a href="mailto:contact@africaunitedspace.org">[contact@africaunitedspace.org]</a></p>
-        <div class="socials">
-                <a href="https://www.instagram.com/africaunitedspace" target="_blank"><img src="images/twitter.webp" alt=""></a>
-                <a href="https://tiktok.com/africa.united.spa4" target="_blank"><img src="images/tiktok.webp" alt=""></a>
-                <a href="https://www.youtube.com/@Africaunited-c6w" target="_blank"><img src="images/tube.png" alt=""></a>
-                
-            </div>
     </footer>
-    <!-- footer ends -->
 
     <script src="js/script.js"></script>
+    <script src="js/storeJs.js"></script>
 </body>
 </html>

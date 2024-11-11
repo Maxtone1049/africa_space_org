@@ -1,13 +1,59 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+
+session_start();
+
+require '../incl/dbconnect.php';
+
+$message = '';
+
+if($_SERVER["REQUEST_METHOD"] === "POST"){
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        try {
+            $pdo = new PDO("mysql:host=localhost; dbname=ausdb", "root", "");
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $sql = "SELECT id, password FROM admin WHERE email = :email";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':email', $email);
+            $stmt->execute();
+
+            $admin = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($admin){
+                if (password_verify($password, $admin['password'])) {
+                    $_SESSION['admin_id'] = $admin['id'];
+                    $_SESSION['admin_email'] = $email;
+                    $message = "Login successful!";
+                    header('Location: dashboard.php');
+                    exit();
+                } else {
+                    $message = "Invalid email or password!";
+                }
+            } else {
+                $message = "Invalid email or password!";
+            }
+        } catch (PDOException $e) {
+            $message = "Database Error: " . $e->getMessage();
+        }
+    } else {
+        $message = "Invalid email format!";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../images/icon.png" type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     <title>Admin | Login</title>
+    
     <style>
         /* Basic reset */
         @font-face {
@@ -203,26 +249,27 @@
 </head>
 <body>
     <div class="container">
-        <!-- Left Section -->
         <div class="left">
             <div class="overlay">
-                <div class="logo">
-                    <!-- <h1>AFRICA UNITED SPACE</h1> -->
-                </div>
+                <div class="logo"></div>
             </div>
         </div>
 
-        <!-- Right Section -->
         <div class="right">
             <div class="form-container">
                 <h2>Sign In to your Account</h2>
-                <p>Welcome back! please enter your detail</p>
-                <form>
+                <p>Welcome back! Please enter your details.</p>
+
+                <div id="response" style="color: <?php echo (strpos($message, 'successfully') !== false) ? 'green' : 'red'; ?>;">
+                    <?php echo $message; ?>
+                </div>
+
+                <form action="" method="POST">
                     <div class="form-group">
-                       <input type="email" id="email" placeholder="Email" required>
+                       <input type="email" name="email" id="email" placeholder="Email" required>
                     </div>
                     <div class="form-group">
-                       <input type="password" id="password" placeholder="Password" required>
+                       <input type="password" name="password" id="password" placeholder="Password" required>
                     </div>
                     <div class="form-group remember-me">
                         <input type="checkbox" id="rememberMe">
@@ -230,12 +277,25 @@
                     </div>
                     <button type="submit" class="btn">Sign In</button>
                     <div class="forgot-password">
-                        <a href="#" class="black">Forgot Password?</a>
-                        <a href="#"> Reset Password</a>
+                        <a href="#">Forgot Password?</a>
+                        <a href="#">Reset Password</a>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
+    <!-- <script>
+        // Get the message from the hidden div
+        const message = document.getElementById('message').innerText;
+
+        if (message) {
+            // If there's a message, display it in the response div
+            document.getElementById('response').innerText = message;
+            document.getElementById('response').style.color = message.includes('successfully') ? 'white' : 'red';
+            document.getElementById('message').style.display = 'block'; // Ensure the message is visible
+        }
+    </script> -->
 </body>
 </html>
+

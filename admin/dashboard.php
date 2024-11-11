@@ -1,3 +1,31 @@
+<?php
+session_start(); 
+
+if (!isset($_SESSION['admin_id'])){
+    header('Location: login.php');
+    exit();
+}
+
+// Database connection
+$servername = "localhost"; // Change with your server details
+$username = "root"; // Your database username
+$password = ""; // Your database password
+$dbname = "ausdb"; // Your database name
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch products
+$sql = "SELECT * FROM products"; // Query to fetch all products
+$result = $conn->query($sql);
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -272,31 +300,28 @@
                 <table class="transaction-table">
                     <thead>
                         <tr>
-                            <th>Transaction</th>
-                            <th>Date & Time</th>
-                            <th>Amount</th>
-                            <th>Status</th>
+                            <th>#</th>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>Description</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>T-shirt Purchase #90288490</td>
-                            <td>Dec 23, 2024</td>
-                            <td>$23</td>
-                            <td><span class="status completed">Completed</span></td>
-                        </tr>
-                        <tr>
-                            <td>Toy Purchase #99988490</td>
-                            <td>Dec 23, 2024</td>
-                            <td>$12</td>
-                            <td><span class="status completed">Completed</span></td>
-                        </tr>
-                        <tr>
-                            <td>Payment failed from #0876518890</td>
-                            <td>Dec 18, 2024</td>
-                            <td>₦234</td>
-                            <td><span class="status cancelled">Cancelled</span></td>
-                        </tr>
+                        <?php
+                        if ($result->num_rows > 0) {
+                            while($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" . $row['id'] . "</td>";
+                                echo "<td>" . $row['product_name'] . "</td>";
+                                echo "<td>" . $row['price'] . "</td>";
+                                echo "<td>" . $row['description'] . "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='5'>No products found</td></tr>";
+                        }
+                        $conn->close();
+                        ?>
                     </tbody>
                 </table>
             </div>

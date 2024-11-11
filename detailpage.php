@@ -1,3 +1,14 @@
+<?php
+
+session_start(); 
+
+if (!isset($_SESSION['user_id'])){
+    header('Location: login.php');
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +33,40 @@
         background: #B20000;
         color: #fff;
     }
+
+
+    /* Color Box Styling */
+.color-box {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    margin-left: 10px;
+    border: 1px solid #ccc;
+}
+
+/* Size Box Styling */
+.size-box {
+    display: inline-block;
+    padding: 5px 10px;
+    margin-left: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Active Size */
+.size-option.act {
+    background: #B20000;
+    color: #fff;
+}
+
+/* Hover effects for size selection */
+.size-box:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
     </style>
 </head>
 <body>
@@ -32,8 +77,10 @@
             <nav class="">
                 <button class="close">x</button>
                 <ul class="pack">
-                    <li><a href="#" class="sign">Sign in</a></li>
-                    <li><a href="#" class="signup">Sign up</a></li>
+                <?php if (!isset($_SESSION['user_id'])): ?>
+                        <li><a href="login.php" class="sign">Sign in</a></li>
+                        <li><a href="register.php" class="signup">Sign up</a></li>
+                    <?php endif; ?>
                 </ul>
             </nav>
             <button class="menu-toggle">☰</button>
@@ -46,43 +93,36 @@
          <!-- Details Section -->
          <section class="product-section">
         <div class="product-gallery">
-            <img src="images/shirt.png" alt="T-Shirt Image">
-            <!-- <button class="gallery-nav prev">&#10094;</button>
-            <button class="gallery-nav next">&#10095;</button> -->
+        <img id="product-image" src="images/shirt.png" alt="T-Shirt Image" style="width: 250px; height: auto;">
+
         </div>
         
         <div class="product-details">
-            <h1>Merch T Shirt AUS branded</h1>
+            <h1 id="product-name"></h1>
             <hr>
-            <p class="price">$40</p>
+            <p id="product-price" class="price">$40</p>
             <p class="content">Fabric Content</p>
-            <p>Small - 5x : 60% Cotton / 40% Polyester</p>
+            <p ></p>
             <br>
-            <p>If the size you are looking for is out of stock, please enter your email below to be notified when inventory is replenished.</p>
+            <p id="product-description"></p>
             <br>
-            <!-- Color Options -->
-            <div class="color-options">
-                <span>Colour:</span>
-                <button class="color-btn black" data-color="black"></button>
-                <button class="color-btn gray" data-color="gray"></button>
-                <button class="color-btn white" data-color="white"></button>
-            </div>
+         <!-- Color Options -->
+<div class="color-options">
+    <span>Colour: </span>
+    <div id="product-colour" class="color-box"></div>
+</div>
 
-            <!-- Size Options -->
-            <div class="size">
-                <span>Size:</span>
-                <button class="size-option" data-size="S">S</button>
-                <button class="size-option" data-size="M">M</button>
-                <button class="size-option" data-size="L">L</button>
-                <button class="size-option" data-size="XL">XL</button>
-                <button class="size-option" data-size="2XL">2XL</button>
-            </div>
+<!-- Size Options -->
+<div class="size">
+    <span>Size: </span>
+    <div id="product-size" class="size-box"></div>
+</div>
 
             <!-- Quantity and Add to Cart -->
             <span>Quantity</span>
             <div class="quan">
                 <div class="count">
-        <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
+                <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
                     <input type="text" id="quantity" value="1">
                     <button class="quantity-btn" onclick="increaseQuantity()">+</button>
                 </div>
@@ -265,5 +305,105 @@
     <!-- footer ends -->
 
     <script src="js/script.js"></script>
+
+<script>
+const productDetails = JSON.parse(localStorage.getItem('productDetails'));
+
+console.log(productDetails);
+
+// Check if data exists
+if (productDetails) {
+    const productName = document.getElementById('product-name');
+    const productPrice = document.getElementById('product-price');
+    const productDescription = document.getElementById('product-description');
+    const productImage = document.getElementById('product-image');
+    const productColour = document.getElementById('product-colour');
+    const productSize = document.getElementById('product-size');
+
+
+
+        // productName.innerText = productDetails.product_name;
+
+    if (productPrice) {
+        productPrice.innerText = productDetails.price;
+    }
+    if (productDescription) {
+        productDescription.innerText = productDetails.description;
+    }
+    if (productDescription) {
+        productDescription.innerText = productDetails.description;
+    }
+    if (productImage) {
+        productImage.src = productDetails.image;
+    }
+    if (productColour) {
+        productColour.style.backgroundColor = productDetails.colours; // assuming 'colours' is a valid CSS color
+    }
+    
+    if (productSize ) {
+        productSize.innerText = productDetails.size 
+    }
+}
+
+
+
+    // Initialize cart in localStorage if not already present
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Function to update quantity
+    function updateQuantity(change) {
+        const quantityInput = document.getElementById('quantity');
+        let quantity = parseInt(quantityInput.value);
+        quantity = Math.max(1, quantity + change); // Ensure quantity is at least 1
+        quantityInput.value = quantity;
+    }
+
+    // Increase quantity button
+    function increaseQuantity() {
+        updateQuantity(1);
+    }
+
+    // Decrease quantity button
+    function decreaseQuantity() {
+        updateQuantity(-1);
+    }
+
+    // Add to Cart button event listener
+    document.querySelector('.cartAdd').addEventListener('click', () => {
+        const quantity = parseInt(document.getElementById('quantity').value);
+
+        // Check if item already exists in cart and update quantity if it does
+        const cartIndex = cart.findIndex(item => item.id === productDetails.id);
+        if (cartIndex !== -1) {
+            cart[cartIndex].quantity += quantity;
+        } else {
+            // Add new item to cart
+            cart.push({
+                id: productDetails.id,
+                name: productDetails.product_name,
+                price: productDetails.price,
+                quantity: quantity,
+                image: productDetails.image,
+                colour: productDetails.colours,
+                size: productDetails.size
+            });
+        }
+
+        // Save updated cart to localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+        alert('Product added to cart!');
+
+        const products = JSON.parse(localStorage.getItem('cart'));
+        console.log(products);
+        
+        window.location.href = "cart.php";
+
+    });
+
+    // Quantity buttons
+    document.querySelector('.quantity-btn:first-child').onclick = decreaseQuantity;
+    document.querySelector('.quantity-btn:last-child').onclick = increaseQuantity;
+
+    </script>
 </body>
 </html>

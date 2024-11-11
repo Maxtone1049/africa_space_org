@@ -1,3 +1,18 @@
+<?php
+session_start(); 
+
+if (!isset($_SESSION['user_id'])){
+    header('Location: login.php');
+    exit();
+}
+
+?>
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,11 +36,17 @@
                 <ul>
                 <li> <a href="about" class="touch">About Us</a></li>
                     <li> <a href="contact" class="touch">Contact Us</a></li>
-                    <li> <a href="#" class="touch">Shop</a></li>
+                    
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                        <li><a href="store.php" class="touch">Store</a></li>
+                    <?php endif; ?>
+
                 </ul>
                 <ul class="pack">
-                   <li> <a href="login" class="sign">Sign in</a></li>
-                   <li> <a href="signup" class="signup">Sign up</a></li>
+                    <?php if (!isset($_SESSION['user_id'])): ?>
+                        <li><a href="login.php" class="sign">Sign in</a></li>
+                        <li><a href="signup.php" class="signup">Sign up</a></li>
+                    <?php endif; ?>
                    <!-- <div class="pack"> -->
                        <!-- <a href="#"><img class="pinch" src="images/shopping-basket.png" alt="shopping-basket.png"></a>
                        <img class="p" src="images/Avatar.svg" alt="Avatar.svg">

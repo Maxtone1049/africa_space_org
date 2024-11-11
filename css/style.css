@@ -102,34 +102,7 @@ padding: 0px;
     font-weight: 500;
     cursor: pointer;
 }
-.bOne{
-    background: #F3F3F3;
-    border: none;
-    outline: none;
-    font-size: 14px;
-    font-weight: 700;
-    font-family: "Plus Jakarta Sans", sans-serif;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    padding-top: 9px;
-    padding-bottom: 9px;
-    width: 50px;
-    cursor:pointer;
-}
-.btwo{
-    background: #F3F3F3;
-    border: none;
-    outline: none;
-    font-size: 14px;
-    font-family: "Plus Jakarta Sans", sans-serif;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    padding-top: 9px;
-    padding-bottom: 9px;
-    width: 50px;
-    font-weight: 700;
-    cursor:pointer;
-}
+
 .counter{
     font-weight: 600;
     font-family: "Plus Jakarta Sans", sans-serif;
@@ -1193,25 +1166,26 @@ nav a {
         position: relative;
         text-align: center;
         width: 250px;
-        height: 190px;
+        height: 250px;
     }
     .product-card .seperate{
         display: flex;
         justify-content: space-between;
     }
-    .product-card .seperate img{
-        width: 30px;
+    .product-card img{
+        width: 160px;
         object-fit: contain;
     }
     .product-card .pre-order-btn {
         font-family: 'Plus Jakarta Sans', sans-serif;
-        background-color: #000;
+        background-color: #0d0d0d;
         color: #fff;
         border: none;
         padding: 15px;
         border-radius: 5px;
         cursor: pointer;
         font-size: 12px;
+        margin-bottom: 5%;
     }
     
     .product-card .discount, .product-card .price, .product-card .description {
@@ -1270,7 +1244,7 @@ nav a {
         flex: 1;
     }
     
-    .product-gallery img {
+    .product-galleryImg {
         width: 250px;
         border-radius: 8px;
     }
@@ -1289,6 +1263,7 @@ nav a {
     .product-details {
         font-family: 'Plus Jakarta Sans', sans-serif;
         flex: 1;
+        margin-left: 20% !;
     }
     .product-details h1{
         margin-bottom: 10px;

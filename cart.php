@@ -1,3 +1,16 @@
+<?php
+
+session_start(); 
+
+if (!isset($_SESSION['user_id'])){
+    header('Location: login.php');
+    exit();
+}
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,21 +20,206 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Cart | Africa United Space</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* Add some basic styles for active size */
-        .size-option {
-        cursor: pointer;
-        padding: 5px 10px;
-        margin: 0 2px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
+     /* General Layout */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f9f9f9;
+}
+
+/* Container Alignment */
+.maindock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.carrier {
+    background: #fff;
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* Cart Item Alignment */
+.carting {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.carting h4 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Cart Items */
+.cart-items {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.cart-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.product-details {
+    display: flex;
+    align-items: center;
+}
+
+.quantity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.total {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.pagination {
+    background-color: #B20000;
+    width: 8vw;
+    height: 6vh;
+    border-radius: 5%;
+    background-color: #e3e3e3;
+}
+
+.pagination li {
+    cursor: pointer;
+}
+
+/* Total Section */
+.subT {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.subT .word {
+    font-weight: bold;
+}
+
+.subT a {
+    background-color: #B20000;
+    color: #fff;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.d{
+    display: block;
+}
+
+.itemName{
+    margin-bottom: 20% !important;
+    font-weight: bolder;
+}
+
+
+.itemPrice{
+    font-weight: 500;
+}
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+    .maindock {
+        padding: 10px;
     }
-    .size-option.act {
-        background: #B20000;
-        color: #fff;
+
+    .carrier {
+        padding: 10px;
     }
+
+    .carting {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .carting h4 {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .cart-items {
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+    }
+
+    .cart-item img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+
+    .product-details {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+    }
+
+    .quantity {
+        margin-top: 10px;
+    }
+
+    .total {
+        margin-top: 10px;
+    }
+
+    .subT {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .pagination {
+        justify-content: center;
+        gap: 5px;
+    }
+}
     </style>
 </head>
 <body>
@@ -29,11 +227,13 @@
     <div class="task">
         <header class="subhead">
             <a href="."><img src="images/logo.png" alt="Logo"></a>
-            <nav class="">
+            <nav>
                 <button class="close">x</button>
                 <ul class="pack">
-                    <li><a href="#" class="sign">Sign in</a></li>
-                    <li><a href="#" class="signup">Sign up</a></li>
+                <?php if (!isset($_SESSION['user_id'])): ?>
+                        <li><a href="login.php" class="sign">Sign in</a></li>
+                        <li><a href="register.php" class="signup">Sign up</a></li>
+                    <?php endif; ?>
                 </ul>
             </nav>
             <button class="menu-toggle">☰</button>
@@ -50,18 +250,17 @@
                 <h4>Total</h4>
             </div>
             <div class="line"></div>
-            <!-- Item added to List -->
-            <div class="cart-items">
+            <div class="cart-items" id="cart-items">
                 <!-- Cart items will be dynamically inserted here -->
             </div>
             <div class="Bline"></div>
             <div class="subT">
                 <span class="word">Total</span>
-                <span class="total-price">R0.00</span>
+                <span class="total-price" id="total-price">R0.00</span>
                 <span class="time">Shipping & Taxes are calculated at checkout</span>
-                <a href="checkout">Checkout</a>
+                <a id="checkout-button" href="javascript:void(0)">Checkout</a>
+
             </div>
-            <!-- Item Added to List end -->
         </div>
     </section>
 
@@ -86,144 +285,92 @@
         </div>
         <p><a href="mailto:contact@africaunitedspace.org">[contact@africaunitedspace.org]</a></p>
         <div class="socials">
-                <a href="https://www.instagram.com/africaunitedspace" target="_blank"><img src="images/twitter.webp" alt=""></a>
-                <a href="https://tiktok.com/africa.united.spa4" target="_blank"><img src="images/tiktok.webp" alt=""></a>
-                <a href="https://www.youtube.com/@Africaunited-c6w" target="_blank"><img src="images/tube.png" alt=""></a>
-                
-            </div>
+            <a href="https://www.instagram.com/africaunitedspace" target="_blank"><img src="images/twitter.webp" alt=""></a>
+            <a href="https://tiktok.com/africa.united.spa4" target="_blank"><img src="images/tiktok.webp" alt=""></a>
+            <a href="https://www.youtube.com/@Africaunited-c6w" target="_blank"><img src="images/tube.png" alt=""></a>
+        </div>
     </footer>
     <!-- footer ends -->
 
     <script src="js/script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Retrieve cart items from localStorage or initialize as empty array
-            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+ 
 
-            // Initialize size for items without it
-            cartItems.forEach(item => {
-                if (!item.size) {
-                    item.size = 'S'; // Default size
-                }
+
+    <script>
+        // Initialize cart from localStorage or empty array
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Render cart items and update total
+        function renderCartItems() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const totalPriceElement = document.getElementById('total-price');
+            let total = 0;
+
+            cartItemsContainer.innerHTML = '';
+
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+
+                const cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.innerHTML = `
+                    <div class="product-details">
+                        <img src="${item.image}" alt="${item.name}" style="width: 150px; height: auto;">
+                        <div class="dd">
+                            <div class="mb-3 ms-3">
+                                <span class="itemName">${item.name}</span>
+                            </div>
+                            <div class="mb-3 ms-3">
+                                <span>Size: ${item.size}</span>
+                            </div>
+                            <div class="mb-1 ms-3">
+                                <span class="itemPrice">Price: R<span>${item.price}</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="quantity">
+                        <ul class="pagination">
+                            <li class="page-item pt-2" onclick="changeQuantity(${index}, -1)">-</li>
+                            <li class="page-item pt-2">${item.quantity}</li>
+                            <li class="page-item pt-2" onclick="changeQuantity(${index}, 1)">+</li>
+                        </ul>
+                    </div>
+                    <div class="total">R${itemTotal.toFixed(2)}</div>
+                `;
+                cartItemsContainer.appendChild(cartItem);
             });
 
-            // Save updated cart items back to localStorage
-            saveCart();
+            totalPriceElement.innerText = `R${total.toFixed(2)}`;
+            updateCartInLocalStorage(total);
+        }
 
-            const totalPriceElement = document.querySelector('.total-price');
-            const itemsContainer = document.querySelector('.cart-items');
-            const shippingFee = 6.00; // Example fixed shipping cost
-
-            function updateCart() {
-    itemsContainer.innerHTML = '';
-    let total = 0;
-
-    cartItems.forEach(item => {
-        total += item.price * item.quantity;
-
-        const itemDiv = document.createElement('div');
-        itemDiv.classList.add('itemSectionOne');
-
-        itemDiv.innerHTML = `
-            <!-- Product Section -->
-            <div class="demand">
-                <img src="${item.image}" alt="${item.name}">
-                <div class="info">
-                    <span class="productName">${item.name}</span>
-    ${item.requiresSize ?`<span class="sholder">Size: <span class="current-size">${item.size}</span></span>`:
-                    ''}
-                    ${item.requiresSize ? `
-                    <div class="size">
-                        <span class="size-option ${item.size === 'S' ? 'act' : ''}" onclick="changeSize('${item.id}', 'S')">S</span>
-                        <span class="size-option ${item.size === 'M' ? 'act' : ''}" onclick="changeSize('${item.id}', 'M')">M</span>
-                        <span class="size-option ${item.size === 'L' ? 'act' : ''}" onclick="changeSize('${item.id}', 'L')">L</span>
-                        <span class="size-option ${item.size === 'XL' ? 'act' : ''}" onclick="changeSize('${item.id}', 'XL')">XL</span>
-                        <span class="size-option ${item.size === '2XL' ? 'act' : ''}" onclick="changeSize('${item.id}', '2XL')">2XL</span>
-                    </div>` : ''}
-                    <span class="pricetag">R${item.price}</span>
-                </div>
-            </div>
-            <!-- Product Section End -->
-            <!-- Quantity Section -->
-            <div class="quantity">
-                <div class="trent">
-                    <button class="bOne" onclick="decreaseQuantity('${item.id}')">-</button>
-                    <div class="counter">${item.quantity}</div>
-                    <button class="btwo" onclick="increaseQuantity('${item.id}')">+</button>
-                </div>
-                <div class="remove" onclick="removeItemFromCart('${item.id}')">Remove</div>
-            </div>
-            <!-- Quantity Section End -->
-            <!-- Total Price -->
-            <div class="priceHead">
-                <span class="pricetag">R${(item.price * item.quantity).toFixed(2)}</span>
-            </div>
-        `;
-        itemsContainer.appendChild(itemDiv);
-    });
-
-    const finalTotal = total + shippingFee;
-    totalPriceElement.textContent = `R${finalTotal.toFixed(2)}`;
-}
-
-
-            function increaseQuantity(productId) {
-                const item = cartItems.find(item => item.id === productId);
-                if (item) {
-                    item.quantity++;
-                }
-                saveCart();
-                updateCart();
+        // Change quantity and update cart
+        function changeQuantity(index, change) {
+            if (cart[index].quantity + change > 0) {
+                cart[index].quantity += change;
+                renderCartItems();
             }
+        }
 
-            function decreaseQuantity(productId) {
-                const item = cartItems.find(item => item.id === productId);
-                if (item && item.quantity > 1) {
-                    item.quantity--;
-                } else if (item && item.quantity === 1) {
-                    removeItemFromCart(productId);
-                    return;
-                }
-                saveCart();
-                updateCart();
-            }
+        // Update cart data in localStorage with total price
+        function updateCartInLocalStorage(total) {
+            const cartData = {
+                items: cart,
+                total: total
+            };
+            localStorage.setItem('cartData', JSON.stringify(cartData));
+        }
 
-            function removeItemFromCart(productId) {
-                const itemIndex = cartItems.findIndex(item => item.id === productId);
-                if (itemIndex !== -1) {
-                    cartItems.splice(itemIndex, 1);
-                }
-                saveCart();
-                updateCart();
-            }
+        // Load cart on page load
+        document.addEventListener('DOMContentLoaded', renderCartItems);
 
-            function changeSize(productId, newSize) {
-                const item = cartItems.find(item => item.id === productId);
-                if (item) {
-                    item.size = newSize;
-                    saveCart();
-                    updateCart();
-                }
-            }
+        // Handle checkout button click
+        document.getElementById('checkout-button').addEventListener('click', function() {
+            const cartData = JSON.parse(localStorage.getItem('cartData'));
+            console.log(cartData); 
 
-            function saveCart() {
-                localStorage.setItem('cartItems', JSON.stringify(cartItems));
-            }
-
-            function clearCart() {
-                localStorage.removeItem('cartItems');
-                itemsContainer.innerHTML = '';
-                totalPriceElement.textContent = 'R0.00';
-            }
-
-            updateCart();
-
-            // Expose functions to global scope for onclick handlers
-            window.clearCart = clearCart;
-            window.increaseQuantity = increaseQuantity;
-            window.decreaseQuantity = decreaseQuantity;
-            window.removeItemFromCart = removeItemFromCart;
-            window.changeSize = changeSize;
+            window.location.href = 'checkout.php';
         });
     </script>
 </body>
