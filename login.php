@@ -31,13 +31,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['user_email'] = $email;
                 $message = "Login successful!";
-                header('Location: store.php');
+                header('Location: store');
                 exit();
             } else {
-                $message = "Invalid email or password!";
+                $message = "<p>Invalid email or password!</p>";
             }
         } else {
-            $message = "Invalid email or password!";
+            $message = "<p>Invalid email or password!</p>";
         }
     } catch (PDOException $e) {
         $message = "Database Error: " . $e->getMessage();
@@ -67,12 +67,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <ul>
                     <li> <a href="about" class="touch">About Us</a></li>
                     <li> <a href="contact" class="touch">Contact Us</a></li>
-                    <li> <a href="#" class="touch">Shop</a></li>
+                    <li> <a href="store" class="touch">Shop</a></li>
                 </ul>
                 <ul class="pack">
                     <?php if (!isset($_SESSION['user_id'])): ?>
-                        <li><a href="login.php" class="sign">Sign in</a></li>
-                        <li><a href="register.php" class="signup">Sign up</a></li>
+                        <li><a href="login" class="sign">Sign in</a></li>
+                        <li><a href="signup" class="signup">Sign up</a></li>
                     <?php endif; ?>
                 </ul>
             </nav>
@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <h3 class="title">Sign in</h3>
                         <p>Fill these few steps to continue</p>
                         
-                        <div id="response" style="color: red;">
+                        <div id="response" style="margin-top:15px;background:black;color: white;border-radius:10px;padding:10px;width: fit-content">
                             <?php if (!empty($message)) { echo $message; } ?>
                         </div>
 
@@ -129,6 +129,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </div>
         </div>
         <p><a href="mailto:contact@africaunitedspace.org">[contact@africaunitedspace.org]</a></p>
+        <div class="socials">
+                <a href="https://www.instagram.com/africaunitedspace" target="_blank"><img src="images/twitter.webp" alt=""></a>
+                <a href="https://tiktok.com/africa.united.spa4" target="_blank"><img src="images/tiktok.webp" alt=""></a>
+                <a href="https://www.youtube.com/@Africaunited-c6w" target="_blank"><img src="images/tube.png" alt=""></a>
+                <a href="https://www.backabuddy.co.za/campaign/africa-united-space/" target="_blank"><img src="images/donate.png" alt=""></a>
+            </div>
     </footer>
 
     <script src="js/script.js"></script>

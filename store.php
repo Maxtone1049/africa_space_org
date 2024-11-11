@@ -101,6 +101,12 @@ if (!isset($_SESSION['user_id'])){
             </div>
         </div>
         <p><a href="mailto:contact@africaunitedspace.org">[contact@africaunitedspace.org]</a></p>
+        <div class="socials">
+                <a href="https://www.instagram.com/africaunitedspace" target="_blank"><img src="images/twitter.webp" alt=""></a>
+                <a href="https://tiktok.com/africa.united.spa4" target="_blank"><img src="images/tiktok.webp" alt=""></a>
+                <a href="https://www.youtube.com/@Africaunited-c6w" target="_blank"><img src="images/tube.png" alt=""></a>
+                <a href="https://www.backabuddy.co.za/campaign/africa-united-space/" target="_blank"><img src="images/donate.png" alt=""></a>
+            </div>
     </footer>
 
     <script src="js/script.js"></script>

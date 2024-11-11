@@ -57,13 +57,13 @@
             <p class="topHead">Mission</p>
             <p class="subText">we are thriving from the foot steps of the  previous  generations, the coming generation should be able to believe in 
             future possibilities, they should be able to harness the power  of Human capability especially here in Africa</p>
-            <p class="ceo">Rasheed Olubukola Damilare</p>
+            <p class="ceo">Rasheed Olubukola</p>
         </div>
         <div class="tentone" id="tear">
             <img src="images/idea.png" alt="">
             <p class="topHead">Vision</p>
             <p class="subText">Our vision at Africa united space is to be the first private company to successfully launch Rockets to Space and hopefully In the future provide Jobs and  opportunities and eventually open up the space Industry in the region of Africa</p>
-            <p class="ceo">Rasheed Olubukola Damilare</p>
+            <p class="ceo">Rasheed Olubukola</p>
         </div>
     </section>
     <!-- Privacy Policy Section -->
@@ -100,6 +100,7 @@
                 <a href="https://www.instagram.com/africaunitedspace" target="_blank"><img src="images/twitter.webp" alt=""></a>
                 <a href="https://tiktok.com/africa.united.spa4" target="_blank"><img src="images/tiktok.webp" alt=""></a>
                 <a href="https://www.youtube.com/@Africaunited-c6w" target="_blank"><img src="images/tube.png" alt=""></a>
+                <a href="https://www.backabuddy.co.za/campaign/africa-united-space/" target="_blank"><img src="images/donate.png" alt=""></a>
                 
             </div>
         </footer>

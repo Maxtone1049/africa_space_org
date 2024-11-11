@@ -2,7 +2,7 @@
 session_start(); 
 
 if (!isset($_SESSION['admin_id'])){
-    header('Location: login.php');
+    header('Location: index.php');
     exit();
 }
 
@@ -19,7 +19,7 @@ if ($conn->connect_error) {
 }
 
 // Fetch products
-$sql = "SELECT * FROM products"; // Query to fetch all products
+$sql = "SELECT * FROM user_orders"; // Query to fetch all products
 $result = $conn->query($sql);
 
 ?>
@@ -276,7 +276,7 @@ $result = $conn->query($sql);
                 <li><a href="analytics"><span><img src="../images/account.svg" alt=""></span> Analytics</a></li>
                 <li><a href="inventory"><span><img src="../images/invent.svg" alt=""></span> Inventory</a></li>
             </ul>
-            <div class="logout"><img src="../images/logout.svg" alt=""> Log out</div>
+            <div class="logout"><a href="logout"><img src="../images/logout.svg" alt=""> Log out</a></div>
         </div>
 
         <!-- Main Content Section -->
@@ -296,15 +296,22 @@ $result = $conn->query($sql);
             <!-- Welcome and Transactions Table -->
             <div class="body">
                 <h2>Welcome, Daniel</h2>
-                <p>Monday, 05 August 2025</p>
+                <p><?php echo date("l, d F Y");?></p>
                 <table class="transaction-table">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Product Name</th>
-                            <th>Price</th>
-                            <th>Description</th>
-                        </tr>
+                            <th>Item Name</th>
+                            <th>Item Price</th>
+                            <th>Item Quantity</th>
+                            <th>Subtotal</th>
+                            <th>Image</th>
+                            <th>Purchased By</th>
+                            <th>Email</th>
+                            <th>Transaction Reference</th>
+                            <th>Status</th>
+                            <th>Purchased On</th>
+                            </tr>
                     </thead>
                     <tbody>
                         <?php
@@ -312,9 +319,16 @@ $result = $conn->query($sql);
                             while($row = $result->fetch_assoc()) {
                                 echo "<tr>";
                                 echo "<td>" . $row['id'] . "</td>";
-                                echo "<td>" . $row['product_name'] . "</td>";
-                                echo "<td>" . $row['price'] . "</td>";
-                                echo "<td>" . $row['description'] . "</td>";
+                                echo "<td>" . $row['item_name'] . "</td>";
+                                echo "<td>" . $row['item_price'] . "</td>";
+                                echo "<td>" . $row['item_quantity'] . "</td>";
+                                echo "<td>" . $row['subtotal'] . "</td>";
+                                echo "<td> <img style='width:150px;border-radius:10px;' src=" . $row['item_image'] . " alt=" . $row['item_image'] . " srcset=".$row['item_image']."></td>";
+                                echo "<td>" . $row['first_name'] . "</td>";
+                                echo "<td>" . $row['email'] . "</td>";
+                                echo "<td>" . $row['tx_ref'] . "</td>";
+                                echo "<td>" . $row['status'] . "</td>";
+                                echo "<td>" . $row['order_date'] . "</td>";
                                 echo "</tr>";
                             }
                         } else {

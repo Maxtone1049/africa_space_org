@@ -25,15 +25,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $stmt->bindParam(':password', $hashedPassword);
 
             if ($stmt->execute()) {
-                $message = "Account created successfully!";
+                $message = "<p>Account created successfully!</p>";
             } else {
-                $message = "Error creating account! Please try again.";
+                $message = "<p>Error creating account! Please try again.</p>";
             }
         } catch (PDOException $e){
             if ($e->getCode() == 23000){
-                $message = "This email address is already registered. Please use a different email.";
+                $message = "<p>This email address is already registered. Please use a different email.</p>";
             } else {
-                $message = "An error occurred. Please try again later.";
+                $message = "<p>An error occurred. Please try again later.</p>";
             }
         }
     }
@@ -67,8 +67,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </ul>
                 <ul class="pack">
                     <?php if (!isset($_SESSION['user_id'])): ?>
-                        <li><a href="login.php" class="sign">Sign in</a></li>
-                        <li><a href="register.php" class="signup">Sign up</a></li>
+                        <li><a href="login" class="sign">Sign in</a></li>
+                        <li><a href="signup" class="signup">Sign up</a></li>
                     <?php endif; ?>
                 </ul>
             </nav>
@@ -93,14 +93,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <div id="message" style="display:none;"><?php echo htmlspecialchars($message); ?></div>
 
                         <!-- Display the message in this div -->
-                        <div id="response"></div>
+                          <div id="response" style="margin-top:15px;background:black;color: white;border-radius:10px;padding:10px;width: fit-content">
+
+                        </div>
                         
                     <div class="input">
                         <input type="email" name="email" placeholder="Email Address" required>
                     </div>
-                    <div class="password input">
+                    <div class="input">
                         <input type="password" name="password" placeholder="Password" required>
-                        <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+                    </div>
+                    <div class="input">
+<input type="password" name="confirm_password" placeholder="Confirm Password" required>
                     </div>
                     <p class="alte"><a class="a" href="login">Already have an account? <span>Login Here</span></a></p>
                     <button type="submit">Sign Up</button>
@@ -132,6 +136,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </div>
         </div>
         <p><a href="mailto:contact@africaunitedspace.org">[contact@africaunitedspace.org]</a></p>
+        <div class="socials">
+                <a href="https://www.instagram.com/africaunitedspace" target="_blank"><img src="images/twitter.webp" alt=""></a>
+                <a href="https://tiktok.com/africa.united.spa4" target="_blank"><img src="images/tiktok.webp" alt=""></a>
+                <a href="https://www.youtube.com/@Africaunited-c6w" target="_blank"><img src="images/tube.png" alt=""></a>
+                <a href="https://www.backabuddy.co.za/campaign/africa-united-space/" target="_blank"><img src="images/donate.png" alt=""></a>
+            </div>
     </footer>
     <!-- Footer Ends -->
 

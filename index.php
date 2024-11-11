@@ -9,10 +9,6 @@ if (!isset($_SESSION['user_id'])){
 ?>
 
 
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,14 +34,15 @@ if (!isset($_SESSION['user_id'])){
                     <li> <a href="contact" class="touch">Contact Us</a></li>
                     
                     <?php if (isset($_SESSION['user_id'])): ?>
-                        <li><a href="store.php" class="touch">Store</a></li>
+                        <li><a href="store" class="touch">Store</a></li>
+                        <li><a href="logout" class="touch">Logout</a></li>
                     <?php endif; ?>
 
                 </ul>
                 <ul class="pack">
                     <?php if (!isset($_SESSION['user_id'])): ?>
-                        <li><a href="login.php" class="sign">Sign in</a></li>
-                        <li><a href="signup.php" class="signup">Sign up</a></li>
+                        <li><a href="login" class="sign">Sign in</a></li>
+                        <li><a href="signup" class="signup">Sign up</a></li>
                     <?php endif; ?>
                    <!-- <div class="pack"> -->
                        <!-- <a href="#"><img class="pinch" src="images/shopping-basket.png" alt="shopping-basket.png"></a>
@@ -228,7 +225,7 @@ if (!isset($_SESSION['user_id'])){
                 <a href="https://www.instagram.com/africaunitedspace" target="_blank"><img src="images/twitter.webp" alt=""></a>
                 <a href="https://tiktok.com/africa.united.spa4" target="_blank"><img src="images/tiktok.webp" alt=""></a>
                 <a href="https://www.youtube.com/@Africaunited-c6w" target="_blank"><img src="images/tube.png" alt=""></a>
-                
+                <a href="https://www.backabuddy.co.za/campaign/africa-united-space/" target="_blank"><img src="images/donate.png" alt=""></a>
             </div>
 
         </footer>
