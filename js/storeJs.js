@@ -1,3 +1,5 @@
+
+
 document.addEventListener("DOMContentLoaded", () => {
     fetch("storeApi.php") // Ensure this path is correct relative to where the HTML is served
         .then(response => {

@@ -62,7 +62,7 @@ if (!isset($_SESSION['user_id'])){
                     <span class="cont">Contact</span>
                     <a href="#">Have an account? <span class="fitIn">Login</span></a>
                 </div>
-                <form method="POST" action="order_confirmation.php" id="checkout-form">
+                <form id="checkout-form">
                 <div class="input">
                     <input type="email" name="email" id="email" placeholder="Email Address" required>
                     <input type="hidden" name="amount" id="amount"/>
@@ -270,14 +270,14 @@ if (!isset($_SESSION['user_id'])){
 </select>
                 </div>
                 <div class="sides">
-                    <input type="text" id="space" placeholder="First Name" name="first_name" id="first_name" required>
+                    <input type="text"  placeholder="First Name" name="first_name" id="first_name" required>
                     <input type="text" placeholder="Last Name" name="last_name" id="last_name" required>
                 </div>
                 <div class="input">
                     <input type="text" placeholder="Address" id="address" name="address" required>
                 </div>
                 <div class="sides">
-                    <input type="text" id="space" placeholder="City" id="city" name="city" required>
+                    <input type="text"  placeholder="City" id="city" name="city" required>
                     <input type="text" placeholder="Postal Code(optional)" name="postalCode" id="postalCode" required>
                 </div>
                 <div class="input">
@@ -286,7 +286,7 @@ if (!isset($_SESSION['user_id'])){
                 <div class="divide">
                     <span><a href="cart"> Return to Cart</a></span>
                      <!-- <button>Send</button> -->
-                    <button type="button" name="send" class="fire">Pay Confirm Order</button>
+                    <button type="submit" name="send" class="fire">Pay Confirm Order</button>
                 </div>
             </form>
             </div>
@@ -346,109 +346,8 @@ if (!isset($_SESSION['user_id'])){
               
               <script src="js/script.js"></script>
               <script src="https://checkout.flutterwave.com/v3.js"></script>
-         <script>
+              <script src="js/checkout.js"></script>
 
-
-                document.getElementById('checkout-form').addEventListener('submit', function(event) {
-                event.preventDefault();  // Prevent the default form submission
-
-                // Get values from form inputs
-                const firstName = document.getElementById('first_name').value;
-                const lastName = document.getElementById('last_name').value;
-                const email = document.getElementById('email').value;
-                const phone = document.getElementById('phone').value;
-                const address = document.getElementById('address').value;
-                const city = document.getElementById('city').value;
-                const postalCode = document.getElementById('postalCode').value;
-                const country = document.getElementById('country').value;
-
-                // Create an object to store the collected data
-                const formData = {
-                    firstName,
-                    lastName,
-                    email,
-                    phone,
-                    address,
-                    city,
-                    postalCode,
-                    country,
-                };
-
-    
-                });
-
- 
-            const submitButton =document.querySelector('.fire');
-            const form = document.getElementById('checkout-form');
-            
-            submitButton.addEventListener('click',makePayment);
-
-                 
-                const cartData = JSON.parse(localStorage.getItem('cartData'));
-                // console.log(cartData.items);
-                
-                
-                let lastItem = null;
-
-                if (cartData && Array.isArray(cartData.items)) {
-                    cartData.items.forEach(item => {
-                        console.log("Item:", item);
-                        console.log("Quantity:", item.quantity);
-                        console.log("Price:", item.price);
-                        console.log("Colour:", item.colour);
-                        console.log("Image:", item.image);
-                        console.log("Name:", item.name);
-                        console.log("Size:", item.size);
-
-                        lastItem = item;
-                    });
-                }
-
-                if (lastItem) {
-                    console.log("Last Item Name:", lastItem.name);
-                    console.log("Last Item Quantity:", lastItem.quantity);
-                    console.log("Last Item Price:", lastItem.price);
-                }
-
-                            
-
-                      
-
-
-                    
-
-                function makePayment() {
-                        // FlutterwaveCheckout({
-                        //     public_key: "FLWPUBK_TEST-ac960a48cf2670df7c3d8a479ddb6869-X",
-                        //     tx_ref: 'afus'+Date.now(),
-                        //     amount: amount.value.trim(),
-                        //     currency: "ZAR",
-                        //     payment_options: "card, ussd",
-                        //     customer: {
-                        //         email: email.value.trim(),
-                        //         phone_number: phone.value.trim(),
-                        //         name: `${firstName} ${lastName}`,
-                        //     },
-                        //     customizations: {
-                        //         title: "Africa united space",
-                        //         logo: "https://checkout.flutterwave.com/assets/img/rave-logo.png",
-                        //     },
-                        
-                           
-                        // });
-
-
-                        // const cartItems = JSON.parse(localStorage.getItem('cartData')) || [];
-                        // console.log(cartItems); 
-                }
-
-                
-
-
-
-   
-       
-        </script>
         
 </body>
 </html>
